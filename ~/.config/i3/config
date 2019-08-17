@@ -1,0 +1,213 @@
+
+ #
+ # i3 config file (v4)
+ # Please see https://i3wm.org/docs/userguide.html for a complete reference!
+ #
+
+ #
+ # MOD KEY BINDING
+ #
+
+set $mod Mod4
+
+ #
+ # STARTUP COMMANDS
+ #
+
+exec_always    --no-startup-id    setxkbmap -layout es
+exec_always    --no-startup-id    xrandr --dpi 100
+exec_always    --no-startup-id    feh --randomize --bg-scale ~/Pictures/Wallpapers/i3/*
+exec_always    --no-startup-id    $HOME/.config/compton/launch.sh
+exec_always    --no-startup-id    nm-applet
+exec_always    --no-startup-id    timedatectl
+exec_always                       redshift
+exec_always                       kitty
+
+ #
+ # STYLISATION
+ #
+
+# Gaps
+gaps outer 5
+gaps inner 25
+
+# Border width
+default_border pixel 3
+
+# Font
+font pango:Fira Code 11
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+# Change to random wallpaper
+bindsym $mod+Shift+w              exec feh --randomize --bg-scale ~/Pictures/Wallpapers/i3/*
+
+# Change wallpaper to Vim cheatsheet
+bindsym $mod+Shift+v              exec feh --bg-scale ~/Pictures/Wallpapers/beautiful-vim-cheat-sheet.png
+
+ #
+ #  ACTIVITY CONTROL
+ #
+
+# Program launcher
+bindsym $mod+d                    exec rofi -show drun -config ~/.config/rofi/config.rasi
+#dmenu_run -b -fn "Fira Code 11" -h 25 -nb "#222222" -nf "#cfcfc3" -sb "#34daed" -sf "#222222"
+
+# File managers
+bindsym $mod+e                    exec thunar
+
+# Terminal
+bindsym $mod+Return               exec kitty
+
+# Kill focused window
+bindsym $mod+Shift+q              kill
+bindsym Mod1+F4                   kill
+
+ #
+ # CONTAINER MANAGEMENT
+ #
+
+bindsym $mod+Left                 focus left
+bindsym $mod+Down                 focus down
+bindsym $mod+Up                   focus up
+bindsym $mod+Right                focus right
+
+bindsym $mod+Shift+Left           move left
+bindsym $mod+Shift+Down           move down
+bindsym $mod+Shift+Up             move up
+bindsym $mod+Shift+Right          move right
+
+bindsym $mod+r                    split toggle
+bindsym $mod+f                    fullscreen toggle
+bindsym $mod+Shift+space          floating toggle
+bindsym $mod+space                focus mode_toggle
+
+ #
+ # WORKSPACE AND CONTAINER CONTROL
+ #
+
+# Define names for default workspaces for which we configure key bindings later on.
+# We use variables to avoid repeating the names in multiple places.
+set $ws1    "1"
+set $ws2    "2"
+set $ws3    "3"
+set $ws4    "4"
+set $ws5    "5"
+set $ws6    "6"
+set $ws7    "7"
+set $ws8    "8"
+set $ws9    "9"
+set $ws10   "10"
+set $ws11   "11"
+set $ws12   "12"
+set $ws13   "13"
+set $ws14   "14"
+set $ws15   "15"
+set $ws16   "16"
+set $ws17   "17"
+set $ws18   "18"
+set $ws19   "19"
+set $ws20   "20"
+
+# Switch to workspace
+bindsym $mod+1                    workspace $ws1
+bindsym $mod+2                    workspace $ws2
+bindsym $mod+3                    workspace $ws3
+bindsym $mod+4                    workspace $ws4
+bindsym $mod+5                    workspace $ws5
+bindsym $mod+6                    workspace $ws6
+bindsym $mod+7                    workspace $ws7
+bindsym $mod+8                    workspace $ws8
+bindsym $mod+9                    workspace $ws9
+bindsym $mod+0                    workspace $ws10
+bindsym $mod+Mod1+1               workspace $ws11
+bindsym $mod+Mod1+2               workspace $ws12
+bindsym $mod+Mod1+3               workspace $ws13
+bindsym $mod+Mod1+4               workspace $ws14
+bindsym $mod+Mod1+5               workspace $ws15
+bindsym $mod+Mod1+6               workspace $ws16
+bindsym $mod+Mod1+7               workspace $ws17
+bindsym $mod+Mod1+8               workspace $ws18
+bindsym $mod+Mod1+9               workspace $ws19
+bindsym $mod+Mod1+0               workspace $ws20
+
+# Send active container to workspace
+bindsym $mod+Shift+1              move container to workspace $ws1
+bindsym $mod+Shift+2              move container to workspace $ws2
+bindsym $mod+Shift+3              move container to workspace $ws3
+bindsym $mod+Shift+4              move container to workspace $ws4
+bindsym $mod+Shift+5              move container to workspace $ws5
+bindsym $mod+Shift+6              move container to workspace $ws6
+bindsym $mod+Shift+7              move container to workspace $ws7
+bindsym $mod+Shift+8              move container to workspace $ws8
+bindsym $mod+Shift+9              move container to workspace $ws9
+bindsym $mod+Shift+0              move container to workspace $ws10
+bindsym $mod+Mod1+Shift+1         move container to workspace $ws11
+bindsym $mod+Mod1+Shift+2         move container to workspace $ws12
+bindsym $mod+Mod1+Shift+3         move container to workspace $ws13
+bindsym $mod+Mod1+Shift+4         move container to workspace $ws14
+bindsym $mod+Mod1+Shift+5         move container to workspace $ws15
+bindsym $mod+Mod1+Shift+6         move container to workspace $ws16
+bindsym $mod+Mod1+Shift+7         move container to workspace $ws17
+bindsym $mod+Mod1+Shift+8         move container to workspace $ws18
+bindsym $mod+Mod1+Shift+9         move container to workspace $ws19
+bindsym $mod+Mod1+Shift+0         move container to workspace $ws20
+
+# Resize active container
+bindsym $mod+l                    resize  shrink  width   10 px  or  10 ppt
+bindsym $mod+k                    resize  grow    height  10 px  or  10 ppt
+bindsym $mod+j                    resize  shrink  height  10 px  or  10 ppt
+bindsym $mod+h                    resize  grow    width   10 px  or  10 ppt
+bindsym $mod+Shift+l              resize  shrink  width   01 px  or  01 ppt
+bindsym $mod+Shift+k              resize  grow    height  01 px  or  01 ppt
+bindsym $mod+Shift+j              resize  shrink  height  01 px  or  01 ppt
+bindsym $mod+Shift+h              resize  grow    width   01 px  or  01 ppt
+
+# Specific i3 commands
+bindsym $mod+Shift+c              reload
+bindsym $mod+Shift+r              restart
+bindsym $mod+Mod1+e               exec "i3-nagbar -f Fira Code -t warning -m 'Terminate i3?' -B 'Yes' 'i3-msg exit'"
+
+# Start i3bar
+bar {
+   status_command /bin/i3status-rs /home/groctel/.config/i3status/status.toml
+   colors {
+       separator 		#0d0d0d
+       background 		#0d0d0d
+       statusline 		#0d0d0d
+       focused_workspace 	#0d0d0d  #34daed  #222222
+       active_workspace 	#0d0d0d  #333333  #efefef
+       inactive_workspace 	#0d0d0d  #4d4d4d  #efefef
+       urgent_workspace 	#0d0d0d  #ff2a70  #222222
+   }
+}
+
+ #
+ # MEDIA CONTROL
+ #
+
+# Pulse Audio controls
+bindsym XF86AudioRaiseVolume      exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
+bindsym XF86AudioLowerVolume      exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
+bindsym XF86AudioMute             exec --no-startup-id pactl set-sink-mute   0 toggle # mute sound
+
+# Sreen brightness controls
+bindsym XF86MonBrightnessUp       exec light -A 5 # increase screen brightness
+bindsym XF86MonBrightnessDown     exec light -U 5 # decrease screen brightness
+
+# Media player controls
+bindsym XF86AudioPlay             exec playerctl play
+bindsym XF86AudioPause            exec playerctl pause
+bindsym XF86AudioNext             exec playerctl next
+bindsym XF86AudioPrev             exec playerctl previous
+
+ #
+ # MISCELLANEOUS
+ #
+
+# Screenshots
+bindsym Print			exec xfce4-screenshooter
+
+# Rotate wallpaper
+# bindsym $mod+Shift+w		exec --no-startup-id feh --randomize --bg-scale /home/groctel/Pictures/Wallpapers/i3/*

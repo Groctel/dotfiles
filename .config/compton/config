@@ -1,0 +1,30 @@
+#vsync = "drm";
+backend = "glx";
+glx-no-stencil = true;
+glx-no-rebind-pixmap = true;
+
+shadow = true;
+shadow-radius = 10;
+no-dnd-shadow = true;
+no-dock-shadow = true;
+#clear-shadow = true;
+shadow-exclude = [
+  # From the Ubuntu forums link ('screaminj3sus')
+  "! name~=''",
+  "n:e:Notification",
+  "n:e:Plank",
+  "n:e:Docky",
+  "g:e:Synapse",
+  "g:e:Kupfer",
+  "g:e:Conky",
+  "class_g ?= 'Notify-osd'",
+  "class_g ?= 'Cairo-dock'",
+  "class_g ?= 'Xfce4-notifyd'",
+  "class_g ?= 'Xfce4-power-manager'"
+];
+shadow-ignore-shaped = false;
+
+detect-client-opacity = true;
+refresh-rate = 0;
+dbe = false;
+unredir-if-possible = false;
