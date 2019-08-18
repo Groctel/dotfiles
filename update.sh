@@ -35,7 +35,12 @@ _from() {
 			cp -r ~/.config/compton .
 			cp -r ~/.config/i3 .
 			cp -r ~/.config/kitty .
+			cp -r ~/.config/neofetch .
+			cp -r ~/.config/rofi .
 			cd ..
+		mkdir .vim && cd .vim
+			cp -r ~/.vim/colors .
+			cd ..	
 		cd ..
 }
 

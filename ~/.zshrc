@@ -23,7 +23,6 @@ antigen theme denysdovhan/spaceship-prompt
 antigen apply
 
 neofetch --color_blocks off
-#figlet Descarga Lineage para Ari y Montse
 
 export PATH="/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/groctel/.antigen/bundles/robbyrussell/oh-my-zsh/lib:/home/groctel/.antigen/bundles/robbyrussell/oh-my-zsh/plugins/git:/home/groctel/.antigen/bundles/robbyrussell/oh-my-zsh/plugins/heroku:/home/groctel/.antigen/bundles/robbyrussell/oh-my-zsh/plugins/pip:/home/groctel/.antigen/bundles/robbyrussell/oh-my-zsh/plugins/lein:/home/groctel/.antigen/bundles/robbyrussell/oh-my-zsh/plugins/command-not-found:/home/groctel/.antigen/bundles/zsh-users/zsh-syntax-highlighting:/home/groctel/.antigen/bundles/zsh-users/zsh-autosuggestions:/home/groctel/.antigen/bundles/denysdovhan/spaceship-prompt:/home/groctel/.vimpkg/bin"
 

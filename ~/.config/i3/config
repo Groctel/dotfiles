@@ -41,10 +41,10 @@ font pango:Fira Code 11
 floating_modifier $mod
 
 # Change to random wallpaper
-bindsym $mod+Shift+w              exec feh --randomize --bg-scale ~/Pictures/Wallpapers/i3/*
+bindsym $mod+Shift+w              exec --no-startup-id feh --randomize --bg-scale ~/Pictures/Wallpapers/i3/*
 
 # Change wallpaper to Vim cheatsheet
-bindsym $mod+Shift+v              exec feh --bg-scale ~/Pictures/Wallpapers/beautiful-vim-cheat-sheet.png
+bindsym $mod+Shift+v              exec --no-startup-id feh --bg-scale ~/Pictures/Wallpapers/beautiful-vim-cheat-sheet.png
 
  #
  #  ACTIVITY CONTROL
