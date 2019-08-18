@@ -29,6 +29,7 @@ provided)\n"
 _from() {
 	rm -rf \~ # DO NOT TOUCH THIS LINE EVER AGAIN IN YOUR LIFE
 	mkdir \~ && cd \~
+		cp ~/antigen.zsh .
 		cp ~/.vimrc .
 		cp ~/.zshrc .
 		mkdir .config && cd .config
