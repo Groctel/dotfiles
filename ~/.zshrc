@@ -1,4 +1,4 @@
-source /home/groctel/antigen.zsh
+source $HOME/antigen.zsh
 
 # Load the oh-my-zsh's library.
 antigen use oh-my-zsh
@@ -25,9 +25,9 @@ antigen apply
 neofetch --color_blocks off
 #figlet Descarga Lineage para Ari y Montse
 
-export PATH="/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/groctel/.antigen/bundles/robbyrussell/oh-my-zsh/lib:/home/groctel/.antigen/bundles/robbyrussell/oh-my-zsh/plugins/git:/home/groctel/.antigen/bundles/robbyrussell/oh-my-zsh/plugins/heroku:/home/groctel/.antigen/bundles/robbyrussell/oh-my-zsh/plugins/pip:/home/groctel/.antigen/bundles/robbyrussell/oh-my-zsh/plugins/lein:/home/groctel/.antigen/bundles/robbyrussell/oh-my-zsh/plugins/command-not-found:/home/groctel/.antigen/bundles/zsh-users/zsh-syntax-highlighting:/home/groctel/.antigen/bundles/zsh-users/zsh-autosuggestions:/home/groctel/.antigen/bundles/denysdovhan/spaceship-prompt:/home/groctel/.vimpkg/bin"
+export PATH="$PATH:$HOME/.antigen/bundles/robbyrussell/oh-my-zsh/lib:$HOME/.antigen/bundles/robbyrussell/oh-my-zsh/plugins/git:$HOME/.antigen/bundles/robbyrussell/oh-my-zsh/plugins/heroku:$HOME/.antigen/bundles/robbyrussell/oh-my-zsh/plugins/pip:$HOME/.antigen/bundles/robbyrussell/oh-my-zsh/plugins/lein:$HOME/.antigen/bundles/robbyrussell/oh-my-zsh/plugins/command-not-found:$HOME/.antigen/bundles/zsh-users/zsh-syntax-highlighting:$HOME/.antigen/bundles/zsh-users/zsh-autosuggestions:$HOME/.antigen/bundles/denysdovhan/spaceship-prompt:$HOME/.vimpkg/bin"
 
-export PATH="/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/groctel/.antigen/bundles/robbyrussell/oh-my-zsh/lib:/home/groctel/.antigen/bundles/robbyrussell/oh-my-zsh/plugins/git:/home/groctel/.antigen/bundles/robbyrussell/oh-my-zsh/plugins/heroku:/home/groctel/.antigen/bundles/robbyrussell/oh-my-zsh/plugins/pip:/home/groctel/.antigen/bundles/robbyrussell/oh-my-zsh/plugins/lein:/home/groctel/.antigen/bundles/robbyrussell/oh-my-zsh/plugins/command-not-found:/home/groctel/.antigen/bundles/zsh-users/zsh-syntax-highlighting:/home/groctel/.antigen/bundles/zsh-users/zsh-autosuggestions:/home/groctel/.antigen/bundles/denysdovhan/spaceship-prompt:/home/groctel/.vimpkg/bin:/home/groctel/.vimpkg/bin"
+export PATH="$PATH:$HOME/.antigen/bundles/robbyrussell/oh-my-zsh/lib:$HOME/.antigen/bundles/robbyrussell/oh-my-zsh/plugins/git:$HOME/.antigen/bundles/robbyrussell/oh-my-zsh/plugins/heroku:$HOME/.antigen/bundles/robbyrussell/oh-my-zsh/plugins/pip:$HOME/.antigen/bundles/robbyrussell/oh-my-zsh/plugins/lein:$HOME/.antigen/bundles/robbyrussell/oh-my-zsh/plugins/command-not-found:$HOME/.antigen/bundles/zsh-users/zsh-syntax-highlighting:$HOME/.antigen/bundles/zsh-users/zsh-autosuggestions:$HOME/.antigen/bundles/denysdovhan/spaceship-prompt:$HOME/.vimpkg/bin:$HOME/.vimpkg/bin"
 
 stty -ixon
 
