@@ -1,0 +1,25 @@
+##
+## Arch Linux repository mirrorlist
+## Filtered by mirror score from mirror status page
+## Generated on 2020-02-01
+##
+
+## United Kingdom
+Server = http://mirror.netweaver.uk/archlinux/$repo/os/$arch
+## United Kingdom
+Server = http://mirror.bytemark.co.uk/archlinux/$repo/os/$arch
+## United Kingdom
+Server = http://lon.mirror.rackspace.com/archlinux/$repo/os/$arch
+## United Kingdom
+Server = http://arch.serverspace.co.uk/arch/$repo/os/$arch
+## United Kingdom
+Server = http://archlinux.mirrors.uk2.net/$repo/os/$arch
+## United Kingdom
+Server = http://mirrors.manchester.m247.com/arch-linux/$repo/os/$arch
+## United Kingdom
+Server = http://mirrors.ukfast.co.uk/sites/archlinux.org/$repo/os/$arch
+## United Kingdom
+Server = http://archlinux.uk.mirror.allworldit.com/archlinux/$repo/os/$arch
+## United Kingdom
+Server = http://www.mirrorservice.org/sites/ftp.archlinux.org/$repo/os/$arch
+

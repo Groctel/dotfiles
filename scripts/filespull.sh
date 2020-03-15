@@ -10,8 +10,15 @@
 
 filespull () {
 	if confirm "yes" "Copy dotfiles from system to repository"; then
-		rm -rf files
-		mkdir files
+		rm -rf files files-root
+		mkdir files files-root
+
+		while read -r line; do
+			directory="$(echo "$line" | sed 's/'"$(basename "$line")"'$//')"
+
+			mkdir -p files-root/"$directory"
+			cp /"$line" files-root/"$directory"/"$(basename "$line")"
+		done < filelist-root
 
 		while read -r line; do
 			directory="$(echo "$line" | sed 's/'"$(basename "$line")"'$//')"

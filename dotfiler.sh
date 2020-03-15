@@ -26,8 +26,11 @@ if [ "$1" = "deploy" ]; then
 	filesdeploy;
 elif [ "$1" = "pull" ]; then
 	filespull;
+elif [ "$1" = "pkginstall" ]; then
+	pkginstall;
 else
-	printf "Use with one of two arguments:\n%s\n%s\n" \
-	       "- deploy: Deploys dotfiles to the system." \
-	       "- pull:   Copies dotfiles into the repository."
+	printf "Use with one of two arguments:\n%s\n%s\n%s\n" \
+	       "- deploy:     Deploys dotfiles to the system." \
+	       "- pull:       Copies dotfiles into the repository." \
+	       "- pkginstall: Installs packages and configures the system."
 fi
