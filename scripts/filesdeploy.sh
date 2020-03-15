@@ -18,14 +18,23 @@ filesdeploy () {
 		fi
 	#	Deploy dotfiles line by line
 		while read -r line; do
-			dest="$line"
+			printf "\033[1;35mDeploying \033[0m%s...\n" "$line";
+			directory="$(echo "$line" | sed 's/'"$(basename "$line")"'//')"
+			base="$(basename "$line")"
 
-			if [ $overwrite = 0 ] && [ -e ~/"$line" ]; then
-				dest="$(echo "$line" | sed 's/$/_/')"
+			if [ $overwrite = 0 ]; then
+				if [ "$directory" != "" ] && [ -e ~/"$directory" ]; then
+					directory="$(echo "$directory" | sed 's/\/$/_\//')";
+				elif [ -e ~/"$line" ]; then
+					base="$(echo "$base" | sed 's/$/_/')";
+				fi
 			fi
 
-			cp files/"$line" ~/"$dest"
+			mkdir -p ~/"$directory"
+
+			cp files/"$line" ~/"$directory$base"
 		done < filelist
+
 		ln -s ~/.vim/UltiSnips/tex.snippets ~/.vim/UltiSnips/plaintex.snippets
 	fi
 
