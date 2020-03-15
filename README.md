@@ -8,9 +8,17 @@ Add them to your system if you want, I couldn't care less.** *Ron Swanson*
 
 The files can be managed with `dotfiler.sh`, which accepts one of two arguments:
 
-| ARGUMENT | DESCRIPTION                          |
-| :------- | :----------------------------------- |
-| `deploy` | Deploys dotfiles to the system.      |
-| `pull`   | Copies dotfiles into the repository. |
+| ARGUMENT     | DESCRIPTION                                 |
+| :----------- | :------------------------------------------ |
+| `deploy`     | Deploys dotfiles to the system.             |
+| `pkginstall` | Installs packages to the system with `yay`. |
+| `pull`       | Copies dotfiles into the repository.        |
 
-This script read the dotfiles from `filelist` and both saves them to the repository and copies them into the home directory.
+This script reads the dotfiles from both `filelist` and `filelist-root`, saves them to the repository and copies them into the home directory.
+It also reads the packages from `pkglist`.
+
+# Screenshots
+
+![](screenshots/desktop.jpg)
+
+![](screenshots/vim.jpg)
