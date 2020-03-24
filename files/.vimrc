@@ -46,8 +46,6 @@ set wrap linebreak        " Lines break on window border
 " ------------------------------------------------------------------------------
 call plug#begin('~/.vim/plugged')
 
-Plug 'Jorengarenar/fauxClip'
-
 " Airline {{{2
 " ------------
 " The airline is the bar that is shown at the bottom of the screen. It shows
