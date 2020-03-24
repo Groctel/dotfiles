@@ -101,6 +101,7 @@ alias tt="tree"
 eval $(thefuck --alias)
 
 # Fetch properties
+export HOSTNAME="grocpc"
 export PF_INFO="ascii title os kernel wm pkgs shell uptime"
 pfetch
 
