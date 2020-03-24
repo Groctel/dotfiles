@@ -27,6 +27,7 @@ libretro-nestopia
 libretro-ppsspp-git
 libretro-snes9x-git
 libretro-stella2014-git
+light
 lightdm
 lightdm-webkit2-greeter
 lightdm-webkit-theme-litarvan
@@ -49,6 +50,7 @@ picom
 polybar-git
 pulseaudio
 pulseaudio-alsa
+pulsemixer
 qogir-cursors-git
 ranger
 raw-thumnailer
@@ -83,7 +85,6 @@ vimix-gtk-themes-git
 vimix-icon-theme
 xf86-input-libinput
 xf86-video-intel
-xorg
 xorg
 zathura
 zathura-cb
