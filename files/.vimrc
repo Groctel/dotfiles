@@ -15,8 +15,16 @@
 " Basic settings {{{1
 
 autocmd BufWritePre * silent! undojoin | %s/\s\+$//e | %s/\(\n\r\?\)\+\%$//e
-filetype plugin indent on         " Required by plugins
+filetype plugin indent on " Required by plugins
 let mapleader = ","
+
+" }}}1
+
+" Custom filetypes {{{1
+
+autocmd BufNewFile,BufRead *.tex  set filetype=tex
+autocmd BufNewFile,BufRead *.tikz set filetype=tex
+autocmd BufNewFile,BufRead *.tpp  set filetype=cpp
 
 " }}}1
 
@@ -45,6 +53,13 @@ set wrap linebreak        " Lines break on window border
 " Required Vundle settings
 " ------------------------------------------------------------------------------
 call plug#begin('~/.vim/plugged')
+
+Plug 'junegunn/vim-easy-align'
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga <Plug>(EasyAlign)
+
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
 
 " Airline {{{2
 " ------------
@@ -79,11 +94,11 @@ Plug 'dense-analysis/ale'
 let g:ale_linters = {'c': ['gcc'],
 \                    'cpp': ['gcc']
 \                   }
-let g:ale_c_gcc_options = '-std=c11 -Wall -Iinclude'
-let g:ale_cpp_gcc_options = '-std=c++11 -Wall -Iinclude'
-let g:ale_sign_error = '=>'
-let g:ale_sign_warning = '->'
-let g:ale_c_parse_makefile = 1
+let g:ale_c_gcc_options      = '-std=c11 -Wall -Iinclude'
+let g:ale_cpp_gcc_options    = '-std=c++11 -Wall -Iinclude'
+let g:ale_sign_error         = '=>'
+let g:ale_sign_warning       = '->'
+let g:ale_c_parse_makefile   = 1
 let g:ale_cpp_parse_makefile = 1
 
 " }}}2
@@ -130,7 +145,11 @@ map <leader>l :Limelight!!<CR>
 " Show syntax highlighting in Markdown files.
 Plug 'plasticboy/vim-markdown'
 
+let g:vim_markdown_folding_disabled = 1
+let g:vim_markdown_frontmatter = 1
 let g:vim_markdown_math = 1
+let g:vim_markdown_new_list_item_indent = 2
+let g:vim_markdown_strikethrough = 1
 
 " }}}2
 
@@ -176,7 +195,7 @@ map <leader>u :UndotreeToggle<CR>
 " }}}2
 
 " All of your Plugs must be added before the following line
-call plug#end()            " required
+call plug#end() " required
 
 " }}}1
 
@@ -229,7 +248,7 @@ endif
 colorscheme challenger_deep
 
 " Show tab characters with low opacity (~20%) comment colour
-set listchars=tab:»\  list
+set listchars=tab:>\  list "Alternative character: »
 highlight SpecialKey guifg=#3F3E47
 
 " }}}1
