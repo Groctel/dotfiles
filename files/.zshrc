@@ -94,7 +94,8 @@ alias cal=calcurse
 alias antonio="man" # Shoutouts to @advy99!
 alias l="ls -lahX --group-directories-first"
 alias ll="ls -lhX --group-directories-first"
-alias please="sudo"
+alias please="sudo "
+alias sudo="sudo "
 alias t="tree -a"
 alias tt="tree"
 
