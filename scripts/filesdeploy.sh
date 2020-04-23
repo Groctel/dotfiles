@@ -34,8 +34,6 @@ filesdeploy () {
 
 			cp files/"$line" ~/"$directory$base"
 		done < filelist
-
-		ln -s ~/.vim/UltiSnips/tex.snippets ~/.vim/UltiSnips/plaintex.snippets
 	fi
 
 #	Dependencies deploy
