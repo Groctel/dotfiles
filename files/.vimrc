@@ -54,13 +54,6 @@ set wrap linebreak        " Lines break on window border
 " ------------------------------------------------------------------------------
 call plug#begin('~/.vim/plugged')
 
-Plug 'junegunn/vim-easy-align'
-" Start interactive EasyAlign in visual mode (e.g. vipga)
-xmap ga <Plug>(EasyAlign)
-
-" Start interactive EasyAlign for a motion/text object (e.g. gaip)
-nmap ga <Plug>(EasyAlign)
-
 " Airline {{{2
 " ------------
 " The airline is the bar that is shown at the bottom of the screen. It shows
@@ -68,6 +61,9 @@ nmap ga <Plug>(EasyAlign)
 
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+
+" Colorscheme
+let g:airline_theme='bubblegum'
 
 " Use large separator characters to force an uniform look
 let g:airline_left_sep        = ''
@@ -90,28 +86,62 @@ endif
 " }}}2
 
 " ALE (Asynchronous Lint Engine) {{{2
+" ===================================
+" A very nice linting engine to show errors and warning every time insert mode
+" is closed.
+
 Plug 'dense-analysis/ale'
+
+" Linters specification
 let g:ale_linters = {'c': ['gcc'],
 \                    'cpp': ['gcc']
 \                   }
-let g:ale_c_gcc_options      = '-std=c11 -Wall -Iinclude'
-let g:ale_cpp_gcc_options    = '-std=c++11 -Wall -Iinclude'
+
+" Formatting options
 let g:ale_sign_error         = '=>'
 let g:ale_sign_warning       = '->'
+
+" C specific options
+let g:ale_c_gcc_options      = '-std=c11 -Wall -Iinclude'
 let g:ale_c_parse_makefile   = 1
+
+" C++ specific options
+let g:ale_cpp_gcc_options    = '-std=c++11 -Wall -Iinclude'
 let g:ale_cpp_parse_makefile = 1
 
 " }}}2
 
-" Challenger Deep {{{2
+" Colorscheme {{{2
 " ====================
-" Challenger Deep is my colourscheme of choice. It loads later in the script
-" as an actual colorscheme, but is sourced here.
-Plug 'challenger-deep-theme/vim', { 'as': 'challenger-deep' }
+" Many colorschemes are installed here with their respective load names, that
+" are to be specified at the 'colorscheme' section at the bottom of the file.
+
+" challenger_deep
+"Plug 'challenger-deep-theme/vim', { 'as': 'challenger-deep' }
+
+" snazzy
+Plug 'connorholyday/vim-snazzy'
 
 "}}}2
 
+" EasyAlign {{{2
+" ==============
+" Used to align source code to match the column of an specified character. To
+" do so, use 'ga' in normal or visual mode followed by the motion and the
+" character to align.
+
+Plug 'junegunn/vim-easy-align'
+
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga <Plug>(EasyAlign)
+
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
+
+" }}}2
+
 " Fugitive {{{2
+
 Plug 'tpope/vim-fugitive'
 
 " }}}2
@@ -121,8 +151,10 @@ Plug 'tpope/vim-fugitive'
 " Goyo removes all superfluous information from the screen and centers the
 " text to free the writer from distractions. It's integrated with LimeLight to
 " offer an improved experience.
+
 Plug 'junegunn/goyo.vim'
 
+" Toggle keybind
 map <leader>g :Goyo<CR>
 
 " }}}2
@@ -132,10 +164,14 @@ map <leader>g :Goyo<CR>
 " Limelight turns colours off in uncofused paragraphs so that the writer isn't
 " distracted by the context's syntax. It's integrated with Goyo to turn on and
 " off along with it.
+
 Plug 'junegunn/limelight.vim'
 
+" Automatically start and end with Goyo
 autocmd! User GoyoEnter Limelight
 autocmd! User GoyoLeave Limelight!
+
+" Toggle keybind
 map <leader>l :Limelight!!<CR>
 
 " }}}2
@@ -143,13 +179,15 @@ map <leader>l :Limelight!!<CR>
 " Markdown syntax {{{2
 " --------------------
 " Show syntax highlighting in Markdown files.
+
 Plug 'plasticboy/vim-markdown'
 
-let g:vim_markdown_folding_disabled = 1
-let g:vim_markdown_frontmatter = 1
-let g:vim_markdown_math = 1
+" Formatting options
+let g:vim_markdown_folding_disabled     = 1
+let g:vim_markdown_frontmatter          = 1
+let g:vim_markdown_math                 = 1
 let g:vim_markdown_new_list_item_indent = 2
-let g:vim_markdown_strikethrough = 1
+let g:vim_markdown_strikethrough        = 1
 
 " }}}2
 
@@ -157,25 +195,55 @@ let g:vim_markdown_strikethrough = 1
 " -------------
 " NERDTree shows a directory tree at the left side of the screen, making the
 " navigation through the project much easier.
-Plug 'scrooloose/nerdtree'
 
+Plug 'scrooloose/nerdtree'
+Plug 'Xuyuanp/nerdtree-git-plugin'
+
+" Toggle keybind
 map <leader>n :NERDTreeToggle<CR>
 
 " }}}2
 
+" Polyglot {{{2
+" =============
+" Enable advanced syntax highlighting.
+
+Plug 'sheerun/vim-polyglot'
+
+" }}}2
+
 " Surround {{{2
+" =============
+" Add, change and delete strings' surroundings. Here are some use cases:
+" - cs"' : Change surroundings from double quotes to single quotes.
+" - cs'<li> : Change surroundings from single quotes to '<li>' and '</li>'.
+" - cst" : Change surroundings from <tag> to double quotes.
+" - ds" : Delete double quotes surroundings.
+" - ysiW( : Change WORD's surroundings to parens.
+"
+" Use with 'S' in visual mode to change surround a text block.
+
 Plug 'tpope/vim-surround'
 
 " }}}2
 
 " Tagbar "{{{2
+
 Plug 'majutsushi/tagbar'
+
+" Toggle key
 map <leader>t :TagbarToggle<CR>
 
 " }}}2
 
 " UltiSnips "{{{2
+" ===============
+" Snippets called by writing a word preceded by a space and pressing <Tab>.
+" They are defined at "~/.vim/UltiSnips/".
+
 Plug 'sirver/UltiSnips'
+
+" Snippets settings
 let g:UltiSnipsExpandTrigger       = "<tab>"
 let g:UltiSnipsJumpForwardTrigger  = "<C-B>"
 let g:UltiSnipsJumpBackwardTrigger = "<C-Z>"
@@ -188,6 +256,7 @@ let g:UltiSnipsEditSplit           = "vertical"
 " Undotree displays a tree of the document's writing history at the left side
 " of the screen using a tree data structure, so that branching undos can be
 " accessed and they're not lost.
+
 Plug 'mbbill/undotree'
 
 map <leader>u :UndotreeToggle<CR>
@@ -223,10 +292,14 @@ command MDTexSubsection execute "%s/^### \\+[^-a-zA-Z]*-\\? *\\(.\\+\\)$/\\\\sub
 " Custom key mappings to make the use of Vim much more comfortable.
 
 " Move through window splits with ^[HJKL] {{{2
-nmap <silent> <C-K> :wincmd k<CR>
-nmap <silent> <C-J> :wincmd j<CR>
-nmap <silent> <C-H> :wincmd h<CR>
-nmap <silent> <C-L> :wincmd l<CR>
+imap <silent> <C-K> <Esc>:wincmd k<CR>
+imap <silent> <C-J> <Esc>:wincmd j<CR>
+imap <silent> <C-H> <Esc>:wincmd h<CR>
+imap <silent> <C-L> <Esc>:wincmd l<CR>
+ map <silent> <C-K>      :wincmd k<CR>
+ map <silent> <C-J>      :wincmd j<CR>
+ map <silent> <C-H>      :wincmd h<CR>
+ map <silent> <C-L>      :wincmd l<CR>
 
 " }}}2
 
@@ -245,7 +318,7 @@ if has('nvim') || has('termguicolors')
   set termguicolors
 endif
 
-colorscheme challenger_deep
+colorscheme snazzy
 
 " Show tab characters with low opacity (~20%) comment colour
 set listchars=tab:>\  list "Alternative character: »
