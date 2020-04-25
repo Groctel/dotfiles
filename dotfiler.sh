@@ -33,8 +33,9 @@ elif [ "$1" = "pkginstall" ]; then
 elif [ "$1" = "pkgupdate" ]; then
 	pkgupdate;
 else
-	printf "Use with one of two arguments:\n%s\n%s\n%s\n" \
+	printf "Use with one of two arguments:\n%s\n%s\n%s\n%s\n" \
 	       "- deploy:     Deploys dotfiles to the system." \
-	       "- pull:       Copies dotfiles into the repository." \
-	       "- pkginstall: Installs packages and configures the system."
+	       "- pkginstall: Installs packages and configures the system." \
+	       "- pkgupdate:  Updates the installed packages list." \
+	       "- pull:       Copies dotfiles into the repository."
 fi
