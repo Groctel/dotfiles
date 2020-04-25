@@ -14,6 +14,8 @@
 . scripts/confirm.sh
 . scripts/filesdeploy.sh
 . scripts/filespull.sh
+. scripts/pkginstall.sh
+. scripts/pkgupdate.sh
 
 # ==============================================================================
 # MAIN ROUTINE
@@ -28,6 +30,8 @@ elif [ "$1" = "pull" ]; then
 	filespull;
 elif [ "$1" = "pkginstall" ]; then
 	pkginstall;
+elif [ "$1" = "pkgupdate" ]; then
+	pkgupdate;
 else
 	printf "Use with one of two arguments:\n%s\n%s\n%s\n" \
 	       "- deploy:     Deploys dotfiles to the system." \

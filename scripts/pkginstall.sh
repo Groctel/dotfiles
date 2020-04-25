@@ -28,7 +28,7 @@ pkginstall () {
 		rm -rf yay;
 
 		yay --noconfirm --answerclean All --answerdiff None --answeredit None \
-		    -S - < pkglist
+		    --needed -S - < pkglist
 
 		filesinstall
 	fi
