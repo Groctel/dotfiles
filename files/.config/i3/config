@@ -288,8 +288,10 @@ bindsym $meta+$alt+e       exec                 ~/.config/rofi/scripts/power.sh
 bindsym $meta+Shift+e      exec                 $filemanagergui
 
 # Lock the session with i3lock
-bindsym $meta+$alt+q       exec                 i3lock --nofork \
-                           --image=/home/groctel/Pictures/i3lock.png
+bindsym $meta+$alt+q       exec                 betterlockscreen -l dim -t \
+                                                "$(date | sed 's/ ..:..:..//g')" \
+                                                & betterlockscreen -u \
+                                                ~/Pictures/Wallpapers/
 
 # Launch Rofi with an emoji picker
 bindsym $meta+m            exec                 rofimoji -c -s ask
