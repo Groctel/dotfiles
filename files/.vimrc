@@ -63,7 +63,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
 " Colorscheme
-let g:airline_theme='bubblegum'
+"let g:airline_theme='atomic'
 
 " Use large separator characters to force an uniform look
 let g:airline_left_sep        = ''
@@ -117,10 +117,10 @@ let g:ale_cpp_parse_makefile = 1
 " are to be specified at the 'colorscheme' section at the bottom of the file.
 
 " challenger_deep
-"Plug 'challenger-deep-theme/vim', { 'as': 'challenger-deep' }
+Plug 'challenger-deep-theme/vim', { 'as': 'challenger-deep' }
 
 " snazzy
-Plug 'connorholyday/vim-snazzy'
+"Plug 'connorholyday/vim-snazzy'
 
 "}}}2
 
@@ -209,6 +209,8 @@ map <leader>n :NERDTreeToggle<CR>
 " Enable advanced syntax highlighting.
 
 Plug 'sheerun/vim-polyglot'
+
+let g:polyglot_disabled = ['tex']
 
 " }}}2
 
@@ -318,7 +320,7 @@ if has('nvim') || has('termguicolors')
   set termguicolors
 endif
 
-colorscheme snazzy
+colorscheme challenger_deep
 
 " Show tab characters with low opacity (~20%) comment colour
 set listchars=tab:>\  list "Alternative character: »
