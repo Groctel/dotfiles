@@ -293,11 +293,12 @@ bindsym $meta+$alt+q       exec                 betterlockscreen -l dim -t \
                                                 & betterlockscreen -u \
                                                 ~/Pictures/Wallpapers/
 
-# Launch Rofi with an emoji picker
-bindsym $meta+m            exec                 rofimoji -c -s ask
-
 # Restart i3 inplace, without terminating the session
 bindsym $meta+$alt+r       restart
+
+# Launch Rofi with an unicode character picker
+bindsym $meta+u            exec                 unipicker --command "rofi -dmenu" \
+                                                | xclip -sel clip
 
 # Open vim
 bindsym $meta+v            exec                 kitty vim

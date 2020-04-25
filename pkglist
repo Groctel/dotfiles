@@ -137,7 +137,6 @@ retroarch
 retroarch-assets-xmb
 ripgrep
 rofi
-rofimoji
 runelite
 runescape-launcher
 schedtool
@@ -192,6 +191,7 @@ which
 wine-staging
 winetricks
 xarchiver
+xclip
 xf86-input-synaptics
 xf86-video-intel
 xf86-video-vesa

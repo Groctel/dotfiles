@@ -30,6 +30,13 @@ pkginstall () {
 		yay --noconfirm --answerclean All --answerdiff None --answeredit None \
 		    --needed -S - < pkglist
 
+		git clone https://github.com/jeremija/unipicker && (
+			(cd unipicker || return) && \
+			sudo make install && \
+			(cd .. || return) && \
+			rm -rf unipicker;
+		)
+
 		filesinstall
 	fi
 }
