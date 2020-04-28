@@ -65,9 +65,6 @@ alias fortxt="for i in *.txt; do"
 alias forwebm="for i in *.webm; do"
 alias forzip="for i in *.zip; do"
 
-# i3lock
-alias lock="i3lock --image=/home/groctel/Pictures/i3lock.png"
-
 # Ranger (based con $meta+e for "explorer" + locations in my computer)
 alias e="ranger"
 
