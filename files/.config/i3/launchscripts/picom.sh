@@ -15,5 +15,4 @@ if pgrep picom; then
 fi
 
 # Load picom
-picom --experimental-backends --backend glx
-
+picom --experimental-backends
