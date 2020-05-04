@@ -5,8 +5,10 @@
 .config/i3/launchscripts/polybar.sh
 .config/i3/launchscripts/redshift.sh
 .config/i3/scripts/touchpad_toggle.sh
+.config/i3/scripts/mpd.sh
 .config/kitty/kitty.conf
 .config/mimeapps.list
+.config/mpd/mpd.conf
 .config/optimus-manager/Optimus Manager.conf
 .config/polybar/bars.ini
 .config/polybar/colors.ini
@@ -18,6 +20,9 @@
 .config/polybar/scripts/powermenu
 .config/polybar/scripts/powermenu-alt
 .config/polybar/user_modules.ini
+.config/rofi/config.rasi
+.config/rofi/drun.sh
+.config/rofi/row_dock.rasi
 .local/share/fonts/siji.pcf
 .profile
 .vim/UltiSnips/tex.snippets
@@ -25,4 +30,3 @@
 .vimrc
 .zshrc
 Pictures/departure-songs.jpg
-Pictures/Wallpapers/lockscreen.png

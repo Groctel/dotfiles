@@ -38,6 +38,9 @@ set $filemanager      kitty ranger
 # Default graphical file manager
 set $filemanagergui   thunar
 
+# Default music player
+set $musicplayer      kitty ncmpcpp
+
 # Default screenshot program
 set $screenshot       scrot --freeze --quality 100
 
@@ -53,9 +56,6 @@ set $TERMINAL         kitty
 # Launch programs or console commands every time i3wm starts. These are
 # imperative for the correct use of the environment.
 # ==============================================================================
-
-# Set xrander dpi to 100 to show everything at full size
-exec --no-startup-id xrandr --dpi 100
 
 # Set Spanish keyboard layout
 exec --no-startup-id setxkbmap es
@@ -85,10 +85,6 @@ bindsym $meta+Shift+b   border pixel 3
 # Gaps settings
 gaps                    outer 5
 gaps                    inner 15
-
-# Toggle gaps
-bindsym $meta+g         "gaps inner all set 0; gaps outer all set 0"
-bindsym $meta+Shift+g   "gaps inner all set 15; gaps outer all set 5"
 
 # Colour class           border   background  text     indicator  child border
 # ---------------------------------------------------------------------------#
@@ -221,17 +217,6 @@ bindsym $meta+Shift+r          split toggle splith
 bindsym $alt+F4                kill
 
 # ==============================================================================
-# WINDOW CLASS SPECIFIC SETTINGS
-# ------------------------------------------------------------------------------
-# Settings for specific windows initialization
-# ==============================================================================
-
-# Start the terminal in a floating, 80x24 columns window
-# for_window [class="$TERMINAL"] floating enable
-# for_window [class="$TERMINAL"] resize set 800 504
-# for_window [class="$TERMINAL"] move absolute position center
-
-# ==============================================================================
 # HARDWARE KEYSYMS
 # ------------------------------------------------------------------------------
 # Keysyms to change hardware related settings.
@@ -242,10 +227,11 @@ bindsym XF86AudioRaiseVolume  exec --no-startup-id pactl set-sink-volume 0 +5%
 bindsym XF86AudioLowerVolume  exec --no-startup-id pactl set-sink-volume 0 -5%
 bindsym XF86AudioMute         exec --no-startup-id pactl set-sink-mute 0 toggle
 bindsym XF86AudioMicMute      exec --no-startup-id pactl set-source-mute 0
+bindsym XF86AudioPlay         exec --no-startup-id mpc toggle
 
 # Change screen brightness with Light
-bindsym XF86MonBrightnessUp   exec light -A 5
-bindsym XF86MonBrightnessDown exec light -U 5
+bindsym XF86MonBrightnessUp   exec --no-startup-id light -A 5
+bindsym XF86MonBrightnessDown exec --no-startup-id light -U 5
 
 # ==============================================================================
 # SCREENSHOTS
@@ -276,7 +262,7 @@ bindsym $meta+ShiftReturn  exec                 "$TERMINAL && floating enable"
 bindsym $meta+$alt+c       reload
 
 # Start Rofi, a program launcher
-bindsym $meta+d            exec                 ~/.config/polybar/scripts/launcher
+bindsym $meta+d            exec                 ~/.config/rofi/drun.sh
 
 # Start the default file manager
 bindsym $meta+e            exec                 $filemanager
@@ -287,21 +273,29 @@ bindsym $meta+$alt+e       exec                 ~/.config/rofi/scripts/power.sh
 # Start the default graphical file manager
 bindsym $meta+Shift+e      exec                 $filemanagergui
 
-# Lock the session with i3lock
+# Open the music player
+bindsym $meta+m            exec                 ~/.config/i3/scripts/mpd.sh \
+                                                init $TERMINAL
+
+# Close the music player
+bindsym $meta+Shift+m      exec                 ~/.config/i3/scripts/mpd.sh \
+                                                kill
+
+# Lock the session with betterlockscreen
 bindsym $meta+$alt+q       exec                 betterlockscreen -l dim -t \
                                                 "$(date | sed 's/ ..:..:..//g')" \
                                                 & betterlockscreen -u \
                                                 ~/Pictures/Wallpapers/
 
-# Restart i3 inplace, without terminating the session
+# Restart i3 in place, without terminating the session
 bindsym $meta+$alt+r       restart
 
 # Launch Rofi with an unicode character picker
 bindsym $meta+u            exec                 unipicker --command "rofi -dmenu" \
-                                                | xclip -sel clip
+                                                | xclip -r -sel clip
 
 # Open vim
-bindsym $meta+v            exec                 kitty vim
+bindsym $meta+v            exec                 $TERMINAL vim
 
 # ==============================================================================
 # CUSTOM SCRIPTS
