@@ -10,6 +10,7 @@
 .config/mimeapps.list
 .config/mpd/mpd.conf
 .config/optimus-manager/Optimus Manager.conf
+.config/picom/picom.conf
 .config/polybar/bars.ini
 .config/polybar/colors.ini
 .config/polybar/config.ini
