@@ -5,10 +5,6 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
-# ==============================================================================
-# ENVIRONMENT VARIABLES
-# ==============================================================================
-
 set RANGER_LOAD_DEFAULT_RC=FALSE
 
 # ==============================================================================
@@ -85,8 +81,6 @@ alias wqa="yes | sudo pacman -Syu && poweroff"
 # Zip arguments
 alias ziptelegram="zip -9rv -s 1500m"
 
-alias cal=calcurse
-
 # Misc
 alias antonio="man" # Shoutouts to @advy99!
 alias l="ls -lahX --group-directories-first"
@@ -101,7 +95,6 @@ eval $(thefuck --alias)
 # Fetch properties
 export HOSTNAME="grocpc"
 export PF_INFO="ascii title os kernel wm pkgs shell uptime"
-pfetch
 
 # History
 SAVEHIST=100000
