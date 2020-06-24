@@ -1,6 +1,4 @@
 /*
- * Original author's credits:
- *
  * Author : Aditya Shakya (adi1090x)
  * Mail   : adi1090x@gmail.com
  * Github : @adi1090x
@@ -10,7 +8,6 @@
 configuration {
 	font:                "Fira Code 11";
 	show-icons:          true;
-	icon-theme:          "Breeze";
 	display-drun:        "";
 	drun-display-format: "{name}";
 	threads:             0;
@@ -22,11 +19,11 @@ configuration {
 }
 
 * {
-	background:     #31363bff;
-	background-alt: #31363bff;
-	foreground:     #f5f5f5e6;
-	border:         #1d99f3ff;
-	selected:       #3daee966;
+	background:     #EFF0F1FF;
+	background-alt: #EFF0F1FF;
+	foreground:     #000000A6;
+	border:         #3DAEE9FF;
+	selected:       #93CEE999;
 	urgent:         #DA4453FF;
 }
 
@@ -35,7 +32,7 @@ window {
 	background-color: @background;
 	text-color:       @foreground;
 	border-radius:    0px;
-	height:           42%;
+	height:           40%;
 	width:            40%;
 	location:         north;
 	anchor:           north;
@@ -46,7 +43,6 @@ window {
 prompt {
 	enabled:          false;
 }
-
 
 inputbar {
 	background-color: @background;
@@ -60,14 +56,12 @@ inputbar {
 	position:         center;
 }
 
-
 entry {
 	background-color:  @background;
 	text-color:        @foreground;
 	placeholder-color: @foreground;
 	expand:            true;
 	horizontal-align:  0;
-	vertical-align:    1;
 	placeholder:       "Search";
 	blink:             true;
 }
