@@ -11,8 +11,8 @@
 
 # If redshift is running, kill it to prevent multiple instances
 if pgrep redshift; then
-	redshift -x;
 	killall -q redshift;
+	redshift -xt 6500K:6500K;
 fi
 
 # Launch redshift

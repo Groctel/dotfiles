@@ -36,16 +36,14 @@ set $modeswitch Mod5
 set $filemanager      kitty ranger
 
 # Default graphical file manager
-set $filemanagergui   thunar
+set $filemanagergui   nautilus
 
-# Default music player
-set $musicplayer      kitty ncmpcpp
 
 # Default screenshot program
 set $screenshot       scrot --freeze --quality 100
 
 # Default screenshot directory and format
-set $screenshotdir    ~/Pictures/Screenshots/Screenshot\ %Y%m%d-%H%M%S.png
+set $screenshotdir    ~/Pictures/Screenshots/Screen\ %Y-%m-%d\ %H:%M:%S.png
 
 # Default terminal emulator (i3-sensible-terminal)
 set $TERMINAL         kitty
@@ -58,7 +56,7 @@ set $TERMINAL         kitty
 # ==============================================================================
 
 # Set Spanish keyboard layout
-exec --no-startup-id setxkbmap es
+exec                 setxkbmap es
 
 # Enable some Synaptics TouchPad's utilities
 exec --no-startup-id synclient TapButton1=1
@@ -83,7 +81,7 @@ bindsym $meta+b         border none
 bindsym $meta+Shift+b   border pixel 3
 
 # Gaps settings
-gaps                    outer 5
+gaps                    outer 0
 gaps                    inner 15
 
 # Colour class           border   background  text     indicator  child border
@@ -227,11 +225,52 @@ bindsym XF86AudioRaiseVolume  exec --no-startup-id pactl set-sink-volume 0 +5%
 bindsym XF86AudioLowerVolume  exec --no-startup-id pactl set-sink-volume 0 -5%
 bindsym XF86AudioMute         exec --no-startup-id pactl set-sink-mute 0 toggle
 bindsym XF86AudioMicMute      exec --no-startup-id pactl set-source-mute 0
-bindsym XF86AudioPlay         exec --no-startup-id mpc toggle
 
 # Change screen brightness with Light
 bindsym XF86MonBrightnessUp   exec --no-startup-id light -A 5
 bindsym XF86MonBrightnessDown exec --no-startup-id light -U 5
+
+# ==============================================================================
+# MPD
+# ------------------------------------------------------------------------------
+# Keysims to control the music player with mpd, mpc and ncmpcpp.
+# ==============================================================================
+
+# Open the music player
+bindsym $meta+m            exec ~/.config/i3/scripts/mpd.sh init $TERMINAL
+
+# Close the music player
+bindsym $meta+Shift+m      exec ~/.config/i3/scripts/mpd.sh kill
+
+# Toggle play/pause the music player
+bindsym $meta+$alt+Right   exec ~/.config/i3/scripts/mpd.sh toggle $TERMINAL
+
+# Advance to the next song
+bindsym $meta+Right        exec ~/.config/i3/scripts/mpd.sh next
+
+# Return to the previous song
+bindsym $meta+Left         exec ~/.config/i3/scripts/mpd.sh prev
+
+# Rewind to the beginning of the track
+bindsym $meta+$alt+Left    exec ~/.config/i3/scripts/mpd.sh restart
+
+# Seek backwards by 5 seconds
+bindsym $meta+Shift+Left   exec ~/.config/i3/scripts/mpd.sh rwd
+
+# Seek forward by 5 seconds
+bindsym $meta+Shift+Right  exec ~/.config/i3/scripts/mpd.sh fwd
+
+# Turn mpd's volume up by 5%
+bindsym $meta+Up           exec ~/.config/i3/scripts/mpd.sh volup
+
+# Play the current playlist from the beginning
+bindsym $meta+$alt+Up      exec ~/.config/i3/scripts/mpd.sh play
+
+# Turn mpd's volume down by 5%
+bindsym $meta+Down         exec ~/.config/i3/scripts/mpd.sh voldown
+
+# Clear the track queue
+bindsym $meta+$alt+Down    exec ~/.config/i3/scripts/mpd.sh clear
 
 # ==============================================================================
 # SCREENSHOTS
@@ -255,9 +294,6 @@ bindsym --release $meta+Shift+p exec $screenshot --select $screenshotdir
 # Start the default terminal
 bindsym $meta+Return       exec                 $TERMINAL
 
-# Start the default terminal
-bindsym $meta+ShiftReturn  exec                 "$TERMINAL && floating enable"
-
 # Reload the configuration file without restarting i3
 bindsym $meta+$alt+c       reload
 
@@ -272,14 +308,6 @@ bindsym $meta+$alt+e       exec                 ~/.config/rofi/scripts/power.sh
 
 # Start the default graphical file manager
 bindsym $meta+Shift+e      exec                 $filemanagergui
-
-# Open the music player
-bindsym $meta+m            exec                 ~/.config/i3/scripts/mpd.sh \
-                                                init $TERMINAL
-
-# Close the music player
-bindsym $meta+Shift+m      exec                 ~/.config/i3/scripts/mpd.sh \
-                                                kill
 
 # Lock the session with betterlockscreen
 bindsym $meta+$alt+q       exec                 betterlockscreen -l dim -t \
@@ -338,4 +366,4 @@ bindsym $meta+$alt+t exec --no-startup-id .config/i3/scripts/touchpad_toggle.sh
 exec --no-startup-id feh --bg-fill ~/Pictures/departure-songs.jpg
 
 # Start every session with the preferred terminal emulator centered
-exec                 $TERMINAL
+exec                 $TERMINAL sh -c "pfetch; zsh"

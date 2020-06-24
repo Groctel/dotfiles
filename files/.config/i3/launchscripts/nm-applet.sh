@@ -16,4 +16,3 @@ fi
 
 # Launch nm-applet
 nm-applet
-
