@@ -86,7 +86,7 @@ endif
 " }}}2
 
 " ALE (Asynchronous Lint Engine) {{{2
-" ===================================
+" -----------------------------------
 " A very nice linting engine to show errors and warning every time insert mode
 " is closed.
 
@@ -111,8 +111,16 @@ let g:ale_cpp_parse_makefile = 1
 
 " }}}2
 
+" C++ syntax {{{2
+" ---------------
+" C++ advanced syntax settings.
+
+Plug 'octol/vim-cpp-enhanced-highlight'
+
+" }}}2
+
 " Colorscheme {{{2
-" ====================
+" ----------------
 " Many colorschemes are installed here with their respective load names, that
 " are to be specified at the 'colorscheme' section at the bottom of the file.
 
@@ -124,8 +132,16 @@ Plug 'challenger-deep-theme/vim', { 'as': 'challenger-deep' }
 
 "}}}2
 
+" Commentary {{{2
+" ---------------
+" Comments and uncomments lines in great chunks.
+
+Plug 'tpope/vim-commentary'
+
+" }}}2
+
 " EasyAlign {{{2
-" ==============
+" --------------
 " Used to align source code to match the column of an specified character. To
 " do so, use 'ga' in normal or visual mode followed by the motion and the
 " character to align.
@@ -140,7 +156,17 @@ nmap ga <Plug>(EasyAlign)
 
 " }}}2
 
+" FauxClip {{{2
+" -------------
+" Emulates a clipboard with xclip on vim builds compiled without clipboard
+" support.
+
+Plug 'Jorengarenar/fauxClip'
+
+" }}}2
+
 " Fugitive {{{2
+" -------------
 
 Plug 'tpope/vim-fugitive'
 
@@ -205,7 +231,7 @@ map <leader>n :NERDTreeToggle<CR>
 " }}}2
 
 " Polyglot {{{2
-" =============
+" -------------
 " Enable advanced syntax highlighting.
 
 Plug 'sheerun/vim-polyglot'
@@ -215,7 +241,7 @@ let g:polyglot_disabled = ['tex']
 " }}}2
 
 " Surround {{{2
-" =============
+" -------------
 " Add, change and delete strings' surroundings. Here are some use cases:
 " - cs"' : Change surroundings from double quotes to single quotes.
 " - cs'<li> : Change surroundings from single quotes to '<li>' and '</li>'.
@@ -239,7 +265,7 @@ map <leader>t :TagbarToggle<CR>
 " }}}2
 
 " UltiSnips "{{{2
-" ===============
+" ---------------
 " Snippets called by writing a word preceded by a space and pressing <Tab>.
 " They are defined at "~/.vim/UltiSnips/".
 
