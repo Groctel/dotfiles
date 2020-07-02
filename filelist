@@ -21,6 +21,7 @@
 .config/polybar/scripts/powermenu
 .config/polybar/scripts/powermenu-alt
 .config/polybar/user_modules.ini
+.config/rofi/blurry_full.rasi
 .config/rofi/config.rasi
 .config/rofi/drun.sh
 .config/rofi/row_dock.rasi
