@@ -15,7 +15,7 @@ The files can be managed with `dotfiler.sh`, which accepts one of two arguments:
 | `pkgupdate`  | Updates the installed packages list with `yay`. |
 | `pull`       | Copies dotfiles into the repository.            |
 
-This script reads the dotfiles from both `filelist` and `filelist-root`, saves them to the repository and copies them into the home directory.
+This script reads the dotfiles from `filelist`, saves them to the repository and copies them into the home directory.
 It also reads the packages from `pkglist`.
 
 # Screenshots
