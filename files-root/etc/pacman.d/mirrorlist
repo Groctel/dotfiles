@@ -22,4 +22,3 @@ Server = http://mirrors.ukfast.co.uk/sites/archlinux.org/$repo/os/$arch
 Server = http://archlinux.uk.mirror.allworldit.com/archlinux/$repo/os/$arch
 ## United Kingdom
 Server = http://www.mirrorservice.org/sites/ftp.archlinux.org/$repo/os/$arch
-
