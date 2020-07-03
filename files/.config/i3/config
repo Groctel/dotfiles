@@ -36,7 +36,7 @@ set $modeswitch Mod5
 set $filemanager      kitty ranger
 
 # Default graphical file manager
-set $filemanagergui   nautilus
+set $filemanagergui   thunar
 
 
 # Default screenshot program
@@ -58,9 +58,8 @@ set $TERMINAL         kitty
 # Set Spanish keyboard layout
 exec                 setxkbmap es
 
-# Enable some Synaptics TouchPad's utilities
-exec --no-startup-id synclient TapButton1=1
-exec --no-startup-id synclient HorizTwoFingerScroll=1
+# Set touchpad settings
+exec --no-startup-id xinput set-prop 11 "libinput Tapping Enabled" 1
 
 # ==============================================================================
 # GRAPHICAL OPTIONS
@@ -332,7 +331,7 @@ bindsym $meta+v            exec                 $TERMINAL vim
 # ==============================================================================
 
 # Toggle touchpad
-bindsym $meta+$alt+t exec --no-startup-id .config/i3/scripts/touchpad_toggle.sh
+bindsym $meta+$alt+t exec --no-startup-id .config/i3/scripts/input_toggle.sh 11
 
 # ==============================================================================
 # STATUS BAR

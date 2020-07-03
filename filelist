@@ -4,7 +4,7 @@
 .config/i3/launchscripts/picom.sh
 .config/i3/launchscripts/polybar.sh
 .config/i3/launchscripts/redshift.sh
-.config/i3/scripts/touchpad_toggle.sh
+.config/i3/scripts/input_toggle.sh
 .config/i3/scripts/mpd.sh
 .config/kitty/kitty.conf
 .config/mimeapps.list
