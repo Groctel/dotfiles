@@ -22,6 +22,7 @@ let mapleader = ","
 
 " Custom filetypes {{{1
 
+autocmd BufNewFile,BufRead *.cls  set filetype=tex
 autocmd BufNewFile,BufRead *.tex  set filetype=tex
 autocmd BufNewFile,BufRead *.tikz set filetype=tex
 autocmd BufNewFile,BufRead *.tpp  set filetype=cpp
@@ -331,6 +332,12 @@ imap <silent> <C-L> <Esc>:wincmd l<CR>
 
 " }}}2
 
+" Miscellaneous {{{2
+ noremap <silent> <F3>      :nohl<CR>
+inoremap <silent> <F3> <Esc>:nohl<CR>a
+
+" }}}2
+
 " }}}1
 
 " Editor style {{{1
@@ -349,7 +356,8 @@ endif
 colorscheme challenger_deep
 
 " Show tab characters with low opacity (~20%) comment colour
-set listchars=tab:>\  list "Alternative character: »
+"Alternative tab character: »
+set listchars=tab:>\ ,trail:· list
 highlight SpecialKey guifg=#3F3E47
 
 " }}}1
