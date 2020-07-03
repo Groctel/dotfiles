@@ -16,13 +16,6 @@ filespull () {
 		while read -r line; do
 			directory="$(echo "$line" | sed 's/'"$(basename "$line")"'$//')"
 
-			mkdir -p files-root/"$directory"
-			cp /"$line" files-root/"$directory"/"$(basename "$line")"
-		done < filelist-root
-
-		while read -r line; do
-			directory="$(echo "$line" | sed 's/'"$(basename "$line")"'$//')"
-
 			mkdir -p files/"$directory"
 			cp ~/"$line" files/"$directory"/"$(basename "$line")"
 		done < filelist
