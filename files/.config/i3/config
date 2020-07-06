@@ -213,6 +213,9 @@ bindsym $meta+Shift+r      split toggle splith
 # Close target container
 bindsym $alt+F4            kill
 
+# Focus the latest urgent container
+bindsym $meta+x            [urgent=latest] focus
+
 # ==============================================================================
 # HARDWARE KEYSYMS
 # ------------------------------------------------------------------------------
