@@ -38,7 +38,6 @@ set $filemanager      kitty ranger
 # Default graphical file manager
 set $filemanagergui   thunar
 
-
 # Default screenshot program
 set $screenshot       scrot --freeze --quality 100
 
@@ -47,6 +46,22 @@ set $screenshotdir    ~/Pictures/Screenshots/Screen\ %Y-%m-%d\ %H:%M:%S.png
 
 # Default terminal emulator (i3-sensible-terminal)
 set $TERMINAL         kitty
+
+# ==============================================================================
+# SCRIPTS
+# ------------------------------------------------------------------------------
+# Scripts are saved as expandable variables to facilitate the reading and
+# editing of the config.
+# ==============================================================================
+
+# Manage input devices with libinput
+set $input .config/i3/scripts/inputmgr.sh
+
+# Manage the music player daemon
+set $mpd    ~/.config/i3/scripts/mpd.sh
+
+# The default rofi path
+set $rofi   ~/.config/rofi/drun.sh
 
 # ==============================================================================
 # AUTOSTART PROGRAMS
@@ -59,7 +74,7 @@ set $TERMINAL         kitty
 exec                 setxkbmap es
 
 # Set touchpad settings
-exec --no-startup-id xinput set-prop 11 "libinput Tapping Enabled" 1
+exec --no-startup-id $input set Touchpad "libinput Tapping Enabled" 1
 
 # ==============================================================================
 # GRAPHICAL OPTIONS
@@ -220,10 +235,10 @@ bindsym $alt+F4                kill
 # ==============================================================================
 
 # Change volume with PulseAudio
-bindsym XF86AudioRaiseVolume  exec --no-startup-id pactl set-sink-volume 0 +5%
 bindsym XF86AudioLowerVolume  exec --no-startup-id pactl set-sink-volume 0 -5%
-bindsym XF86AudioMute         exec --no-startup-id pactl set-sink-mute 0 toggle
+bindsym XF86AudioRaiseVolume  exec --no-startup-id pactl set-sink-volume 0 +5%
 bindsym XF86AudioMicMute      exec --no-startup-id pactl set-source-mute 0
+bindsym XF86AudioMute         exec --no-startup-id pactl set-sink-mute 0 toggle
 
 # Change screen brightness with Light
 bindsym XF86MonBrightnessUp   exec --no-startup-id light -A 5
@@ -236,40 +251,40 @@ bindsym XF86MonBrightnessDown exec --no-startup-id light -U 5
 # ==============================================================================
 
 # Open the music player
-bindsym $meta+m            exec ~/.config/i3/scripts/mpd.sh init $TERMINAL
+bindsym $meta+m           exec $mpd init $TERMINAL
 
 # Close the music player
-bindsym $meta+Shift+m      exec ~/.config/i3/scripts/mpd.sh kill
+bindsym $meta+Shift+m     exec $mpd kill
 
 # Toggle play/pause the music player
-bindsym $meta+$alt+Right   exec ~/.config/i3/scripts/mpd.sh toggle $TERMINAL
+bindsym $meta+$alt+Right  exec $mpd toggle $TERMINAL
 
 # Advance to the next song
-bindsym $meta+Right        exec ~/.config/i3/scripts/mpd.sh next
+bindsym $meta+Right       exec $mpd next
 
 # Return to the previous song
-bindsym $meta+Left         exec ~/.config/i3/scripts/mpd.sh prev
+bindsym $meta+Left        exec $mpd prev
 
 # Rewind to the beginning of the track
-bindsym $meta+$alt+Left    exec ~/.config/i3/scripts/mpd.sh restart
+bindsym $meta+$alt+Left   exec $mpd restart
 
 # Seek backwards by 5 seconds
-bindsym $meta+Shift+Left   exec ~/.config/i3/scripts/mpd.sh rwd
+bindsym $meta+Shift+Left  exec $mpd rwd
 
 # Seek forward by 5 seconds
-bindsym $meta+Shift+Right  exec ~/.config/i3/scripts/mpd.sh fwd
+bindsym $meta+Shift+Right exec $mpd fwd
 
 # Turn mpd's volume up by 5%
-bindsym $meta+Up           exec ~/.config/i3/scripts/mpd.sh volup
+bindsym $meta+Up          exec $mpd volup
 
 # Play the current playlist from the beginning
-bindsym $meta+$alt+Up      exec ~/.config/i3/scripts/mpd.sh play
+bindsym $meta+$alt+Up     exec $mpd play
 
 # Turn mpd's volume down by 5%
-bindsym $meta+Down         exec ~/.config/i3/scripts/mpd.sh voldown
+bindsym $meta+Down        exec $mpd voldown
 
 # Clear the track queue
-bindsym $meta+$alt+Down    exec ~/.config/i3/scripts/mpd.sh clear
+bindsym $meta+$alt+Down   exec $mpd clear
 
 # ==============================================================================
 # SCREENSHOTS
@@ -291,38 +306,38 @@ bindsym --release $meta+Shift+p exec $screenshot --select $screenshotdir
 # ==============================================================================
 
 # Start the default terminal
-bindsym $meta+Return       exec                 $TERMINAL
+bindsym $meta+Return       exec   $TERMINAL
 
 # Reload the configuration file without restarting i3
 bindsym $meta+$alt+c       reload
 
 # Start Rofi, a program launcher
-bindsym $meta+d            exec                 ~/.config/rofi/drun.sh
+bindsym $meta+d            exec   $rofi
 
 # Start the default file manager
-bindsym $meta+e            exec                 $filemanager
+bindsym $meta+e            exec   $filemanager
 
 # Prompt to end session
-bindsym $meta+$alt+e       exec                 ~/.config/rofi/scripts/power.sh
+bindsym $meta+$alt+e       exec   ~/.config/rofi/scripts/power.sh
 
 # Start the default graphical file manager
-bindsym $meta+Shift+e      exec                 $filemanagergui
+bindsym $meta+Shift+e      exec    $filemanagergui
 
 # Lock the session with betterlockscreen
-bindsym $meta+$alt+q       exec                 betterlockscreen -l dim -t \
-                                                "$(date | sed 's/ ..:..:..//g')" \
-                                                & betterlockscreen -u \
-                                                ~/Pictures/Wallpapers/
+bindsym $meta+$alt+q       exec    betterlockscreen -l dim -t \
+                                   "$(date | sed 's/ ..:..:..//g')" \
+                                   & betterlockscreen -u \
+                                   ~/Pictures/Wallpapers/
 
 # Restart i3 in place, without terminating the session
 bindsym $meta+$alt+r       restart
 
 # Launch Rofi with an unicode character picker
-bindsym $meta+u            exec                 unipicker --command "rofi -dmenu" \
-                                                | xclip -r -sel clip
+bindsym $meta+u            exec    unipicker --command "rofi -dmenu" \
+                                   | xclip -r -sel clip
 
 # Open vim
-bindsym $meta+v            exec                 $TERMINAL vim
+bindsym $meta+v            exec    $TERMINAL vim
 
 # ==============================================================================
 # CUSTOM SCRIPTS
@@ -331,7 +346,7 @@ bindsym $meta+v            exec                 $TERMINAL vim
 # ==============================================================================
 
 # Toggle touchpad
-bindsym $meta+$alt+t exec --no-startup-id .config/i3/scripts/input_toggle.sh 11
+bindsym $meta+$alt+t exec --no-startup-id $input toggle Touchpad
 
 # ==============================================================================
 # STATUS BAR
