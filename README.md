@@ -20,6 +20,6 @@ It also reads the packages from `pkglist`.
 
 # Screenshots
 
-![](screenshots/desktop.jpg)
+![](https://i.imgur.com/ELCiyn4.jpg)
 
-![](screenshots/vim.jpg)
+![](https://i.imgur.com/1rmIbj5.jpg)
