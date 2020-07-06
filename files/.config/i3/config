@@ -33,19 +33,19 @@ set $modeswitch Mod5
 # ==============================================================================
 
 # Default file manager
-set $filemanager      kitty ranger
+set $filemanager    kitty ranger
 
 # Default graphical file manager
-set $filemanagergui   thunar
+set $filemanagergui thunar
 
 # Default screenshot program
-set $screenshot       scrot --freeze --quality 100
+set $screenshot     scrot --freeze --quality 100
 
 # Default screenshot directory and format
-set $screenshotdir    ~/Pictures/Screenshots/Screen\ %Y-%m-%d\ %H:%M:%S.png
+set $screenshotdir  ~/Pictures/Screenshots/Screen\ %Y-%m-%d\ %H:%M:%S.png
 
 # Default terminal emulator (i3-sensible-terminal)
-set $TERMINAL         kitty
+set $TERMINAL       kitty
 
 # ==============================================================================
 # SCRIPTS
@@ -53,6 +53,9 @@ set $TERMINAL         kitty
 # Scripts are saved as expandable variables to facilitate the reading and
 # editing of the config.
 # ==============================================================================
+
+# Environment initialiser
+set $init  .config/i3/scripts/init.sh
 
 # Manage input devices with libinput
 set $input .config/i3/scripts/inputmgr.sh
@@ -70,11 +73,15 @@ set $rofi   ~/.config/rofi/drun.sh
 # imperative for the correct use of the environment.
 # ==============================================================================
 
+# Initialise the environment
+exec_always --no-startup-id $init always
+exec        --no-startup-id $init first
+
 # Set Spanish keyboard layout
-exec                 setxkbmap es
+exec                        setxkbmap es
 
 # Set touchpad settings
-exec --no-startup-id $input set Touchpad "libinput Tapping Enabled" 1
+exec        --no-startup-id $input set Touchpad "libinput Tapping Enabled" 1
 
 # ==============================================================================
 # GRAPHICAL OPTIONS
@@ -106,28 +113,6 @@ client.unfocused         #222222  #222222     #888888  #292d2e    #222222    #
 client.urgent            #2f343a  #900000     #ffffff  #900000    #900000    #
 client.placeholder       #000000  #0c0c0c     #ffffff  #000000    #0c0c0c    #
 client.background        #ffffff                                             #
-
-# ==============================================================================
-# LAUNCHSCRIPTS
-# ------------------------------------------------------------------------------
-# Use custom launchscripts (.config/i3/launchscripts/) to launch services which
-# should comply with custom rules set by the user.
-# ==============================================================================
-
-# Launch picom, a composite manager
-exec_always --no-startup-id ~/.config/i3/launchscripts/picom.sh
-
-# Automate actions over specific files with entr
-exec_always --no-startup-id ~/.config/i3/launchscripts/entr.sh
-
-# Start nm-applet, a NetworkManager system tray front-end
-exec_always --no-startup-id ~/.config/i3/launchscripts/nm-applet.sh
-
-# Start polybar, a system bar
-exec_always --no-startup-id $HOME/.config/polybar/launch.sh
-
-# Start redshift to turn the screen red at night
-exec_always --no-startup-id ~/.config/i3/launchscripts/redshift.sh
 
 # ==============================================================================
 # WORKSPACES
@@ -188,45 +173,45 @@ workspace_auto_back_and_forth  yes
 # ==============================================================================
 
 # Change target to relative container in current workspace
-bindsym $meta+h                focus left
-bindsym $meta+j                focus down
-bindsym $meta+k                focus up
-bindsym $meta+l                focus right
+bindsym $meta+h            focus left
+bindsym $meta+j            focus down
+bindsym $meta+k            focus up
+bindsym $meta+l            focus right
 
 # Move target container to relative position (will displace other containers)
-bindsym $meta+Shift+h          move left
-bindsym $meta+Shift+j          move down
-bindsym $meta+Shift+k          move up
-bindsym $meta+Shift+l          move right
+bindsym $meta+Shift+h      move left
+bindsym $meta+Shift+j      move down
+bindsym $meta+Shift+k      move up
+bindsym $meta+Shift+l      move right
 
 # Toggle target container's fullscreen status
-bindsym $meta+f                fullscreen toggle
+bindsym $meta+f            fullscreen toggle
 
 # Resize target container (will resize relative containers)
-bindsym $meta+$alt+l          resize grow   width  10 px or 10 ppt
-bindsym $meta+$alt+k          resize grow   height 10 px or 10 ppt
-bindsym $meta+$alt+j          resize shrink height 10 px or 10 ppt
-bindsym $meta+$alt+h          resize shrink width  10 px or 10 ppt
-bindsym $meta+$alt+Ctrl+l     resize grow   width  01 px or 01 ppt
-bindsym $meta+$alt+Ctrl+k     resize grow   height 01 px or 01 ppt
-bindsym $meta+$alt+Ctrl+j     resize shrink height 01 px or 01 ppt
-bindsym $meta+$alt+Ctrl+h     resize shrink width  01 px or 01 ppt
+bindsym $meta+$alt+l      resize grow   width  10 px or 10 ppt
+bindsym $meta+$alt+k      resize grow   height 10 px or 10 ppt
+bindsym $meta+$alt+j      resize shrink height 10 px or 10 ppt
+bindsym $meta+$alt+h      resize shrink width  10 px or 10 ppt
+bindsym $meta+$alt+Ctrl+l resize grow   width  01 px or 01 ppt
+bindsym $meta+$alt+Ctrl+k resize grow   height 01 px or 01 ppt
+bindsym $meta+$alt+Ctrl+j resize shrink height 01 px or 01 ppt
+bindsym $meta+$alt+Ctrl+h resize shrink width  01 px or 01 ppt
 
 # Modify container layout
-bindsym $meta+s                exec ~/.config/rofi/scripts/i3layout.sh
+bindsym $meta+s            exec ~/.config/rofi/scripts/i3layout.sh
 
 # Manage loating containers
-bindsym $meta+space            "floating toggle; move absolute position center"
-bindsym $meta+$alt+space       "resize set 800 504; move absolute position center"
-bindsym $meta+Shift+space      focus mode_toggle
-floating_modifier              $meta
+bindsym $meta+space        "floating toggle; move absolute position center"
+bindsym $meta+$alt+space   "resize set 800 504; move absolute position center"
+bindsym $meta+Shift+space  focus mode_toggle
+floating_modifier          $meta
 
 # Switch next container's location (to the right or below), marked in border
-bindsym $meta+r                split toggle splitv
-bindsym $meta+Shift+r          split toggle splith
+bindsym $meta+r            split toggle splitv
+bindsym $meta+Shift+r      split toggle splith
 
 # Close target container
-bindsym $alt+F4                kill
+bindsym $alt+F4            kill
 
 # ==============================================================================
 # HARDWARE KEYSYMS
@@ -306,38 +291,38 @@ bindsym --release $meta+Shift+p exec $screenshot --select $screenshotdir
 # ==============================================================================
 
 # Start the default terminal
-bindsym $meta+Return       exec   $TERMINAL
+bindsym $meta+Return  exec   $TERMINAL
 
 # Reload the configuration file without restarting i3
-bindsym $meta+$alt+c       reload
+bindsym $meta+$alt+c  exec   reload
 
 # Start Rofi, a program launcher
-bindsym $meta+d            exec   $rofi
+bindsym $meta+d       exec   $rofi
 
 # Start the default file manager
-bindsym $meta+e            exec   $filemanager
+bindsym $meta+e       exec   $filemanager
 
 # Prompt to end session
-bindsym $meta+$alt+e       exec   ~/.config/rofi/scripts/power.sh
+bindsym $meta+$alt+e  exec   ~/.config/rofi/scripts/power.sh
 
 # Start the default graphical file manager
-bindsym $meta+Shift+e      exec    $filemanagergui
+bindsym $meta+Shift+e exec    $filemanagergui
 
 # Lock the session with betterlockscreen
-bindsym $meta+$alt+q       exec    betterlockscreen -l dim -t \
-                                   "$(date | sed 's/ ..:..:..//g')" \
-                                   & betterlockscreen -u \
-                                   ~/Pictures/Wallpapers/
+bindsym $meta+$alt+q  exec    betterlockscreen -l dim -t \
+                              "$(date | sed 's/ ..:..:..//g')" \
+                              & betterlockscreen -u \
+                              ~/Pictures/Wallpapers/
 
 # Restart i3 in place, without terminating the session
-bindsym $meta+$alt+r       restart
+bindsym $meta+$alt+r  restart
 
 # Launch Rofi with an unicode character picker
-bindsym $meta+u            exec    unipicker --command "rofi -dmenu" \
-                                   | xclip -r -sel clip
+bindsym $meta+u       exec    unipicker --command "rofi -dmenu" \
+                              | xclip -r -sel clip
 
 # Open vim
-bindsym $meta+v            exec    $TERMINAL vim
+bindsym $meta+v       exec    $TERMINAL vim
 
 # ==============================================================================
 # CUSTOM SCRIPTS
@@ -369,15 +354,3 @@ bindsym $meta+$alt+t exec --no-startup-id $input toggle Touchpad
 		#urgent_workspace    #ff2a70  #d64937  #efefef
 	#}
 #}
-
-# ==============================================================================
-# FINISHING TOUCHES
-# ------------------------------------------------------------------------------
-# Launch these programs to greet the user when the environment is ready.
-# ==============================================================================
-
-# Set a random wallpaper with Feh
-exec --no-startup-id feh --bg-fill ~/Pictures/departure-songs.jpg
-
-# Start every session with the preferred terminal emulator centered
-exec                 $TERMINAL sh -c "pfetch; zsh"

@@ -1,9 +1,10 @@
 .config/i3/config
-.config/i3/launchscripts/entr.sh
-.config/i3/launchscripts/nm-applet.sh
-.config/i3/launchscripts/picom.sh
-.config/i3/launchscripts/polybar.sh
-.config/i3/launchscripts/redshift.sh
+.config/i3/scripts/init.sh
+.config/i3/scripts/init/entr.sh
+.config/i3/scripts/init/nm-applet.sh
+.config/i3/scripts/init/picom.sh
+.config/i3/scripts/init/polybar.sh
+.config/i3/scripts/init/redshift.sh
 .config/i3/scripts/inputmgr.sh
 .config/i3/scripts/mpd.sh
 .config/kitty/kitty.conf

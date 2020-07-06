@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # ==============================================================================
-# GROCTEL'S PICOM LAUNCHSCRIPT
+# PICOM INITIALISER
 # ------------------------------------------------------------------------------
 # Picom is a compositor for X, a program that renders a sub-tree of the
 # window hierarchy in an off-screen buffer. It applies visual effects to the
@@ -10,9 +10,7 @@
 # ==============================================================================
 
 # If picom is running, kill it to prevent multiple instances
-if pgrep picom; then
-	killall -q picom
-fi
+pgrep picom$ && killall picom
 
 # Load picom
 picom --experimental-backends

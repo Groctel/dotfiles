@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # ==============================================================================
-# GROCTEL'S REDSHIFT LAUNCHSCRIPT
+# REDSHIFT INITIALISER
 # ------------------------------------------------------------------------------
 # Redshift is a service that adjusts the colour of the screen according to the
 # user's surroundings. It's used to turn the screen red at night so it's not
@@ -10,10 +10,7 @@
 # ==============================================================================
 
 # If redshift is running, kill it to prevent multiple instances
-if pgrep redshift; then
-	killall -q redshift;
-	redshift -xt 6500K:6500K;
-fi
+pgrep redshift && killall -q redshift;
 
-# Launch redshift
-redshift
+# Load redshift
+redshift -xt 6500K:6500K;
