@@ -2,18 +2,38 @@ snippet $$
 \[$1\]
 endsnippet
 
-snippet br
-\pagebreak
-
-$1
+snippet "
+\`\`$1''
 endsnippet
 
-snippet chap "chapter"
-\chapter{$1}
+snippet aloud
+\begin{DndReadAloud}
+	$1
+\end{DndReadAloud}
+endsnippet
+
+snippet area
+\DndArea{$1}
+endsnippet
+
+snippet sarea
+\DndSubArea{$1}
+endsnippet
+
+snippet begin
+\begin{$1}
+$2
+\end{$1}
 endsnippet
 
 snippet bf
 \textbf{$1}
+endsnippet
+
+snippet br
+\pagebreak
+
+$1
 endsnippet
 
 snippet center
@@ -22,8 +42,22 @@ $1
 \end{center}
 endsnippet
 
+snippet chap "chapter"
+\chapter{$1}
+endsnippet
+
+snippet comment
+\begin{DndComment}{${1:Title}}
+	$2
+\end{DndComment}
+endsnippet
+
 snippet code
 \code{$1}
+endsnippet
+
+snippet dndcolor
+\DndSetThemeColor[$1]
 endsnippet
 
 snippet enumerate

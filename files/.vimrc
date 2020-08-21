@@ -14,6 +14,10 @@
 
 " Basic settings {{{1
 
+if &compatible
+	set nocompatible
+endif
+
 autocmd BufWritePre * silent! undojoin | %s/\s\+$//e | %s/\(\n\r\?\)\+\%$//e
 filetype plugin indent on " Required by plugins
 let mapleader = ","
@@ -22,27 +26,56 @@ let mapleader = ","
 
 " Custom filetypes {{{1
 
-autocmd BufNewFile,BufRead *.cls  set filetype=tex
+autocmd BufNewFile,BufRead *.cls  set filetype=plaintex
+autocmd BufNewFile,BufRead *.sty  set filetype=plaintex
 autocmd BufNewFile,BufRead *.tex  set filetype=tex
 autocmd BufNewFile,BufRead *.tikz set filetype=tex
 autocmd BufNewFile,BufRead *.tpp  set filetype=cpp
 
 " }}}1
 
-" Native variables {{{1
+" Native options {{{1
 " ---------------------
-" Settings for variables native to vim.
-"
-set cc=81                 " Vertical bar which you shall not pass
-set foldmethod=marker     " Fold text based on markers by default
+" Settings for options native to Vim.
+
+" Buffer navigation {{{2
+
+set mouse=a               " Let the mouse be used in all modes
+set number                " Show the current line number
+set relativenumber        " Show the surrounding lines' relative offset
+set scrolloff=5           " Leave 5 line above and below the edges
+set splitbelow            " Open new horizontal splits below the current buffer
+set splitright            " Open new vertical splits right of the current buffer
+
+" }}}2
+
+" Line limits {{{2
+
+set colorcolumn=81        " Vertical bar which you shall not pass
+set wrap                  " Wrap lines longer than width in the following line
+set linebreak
+
+" }}}2
+
+" Searching {{{2
+
 set hlsearch              " Highlight all matching strings after a search
-set number relativenumber " Show relative and current number lines
-set shiftwidth=0          " Use the value of tabstop (=0)
-set softtabstop=-1        " Use the value of shiftwidth (<0)
-set splitbelow splitright " Split windows below or to the right
-set t_ut=""               " Constantly redraw vim to keep background colour
-set tabstop=3             " Hard tabs represent 3 spaces for me, not sorry
-set wrap linebreak        " Lines break on window border
+set incsearch             " Highlight all matching strings while searching
+
+" }}}2
+
+" Tabs {{{2
+
+set noexpandtab   " Never expand tabs into spaces
+set shiftwidth=3  " Use the value of tabstop (=0)
+set softtabstop=0 " Use the value of shiftwidth (<0)
+set tabstop=3     " Hard tabs represent 3 spaces for me, not sorry
+
+" }}}2
+
+set foldmethod=marker     " Fold text based on markers by default
+set showcmd               " Display the key presses at the bottom right corner
+"set t_ut=""              " Redraw the whole window every time there's an update
 
 " }}}1
 
@@ -51,7 +84,7 @@ set wrap linebreak        " Lines break on window border
 " Vim-Plug is my plugin loader of choice.
 " All plugins are loaded from here with their corresponding options.
 
-" Required Vundle settings
+" Required Plug settings
 " ------------------------------------------------------------------------------
 call plug#begin('~/.vim/plugged')
 
@@ -61,10 +94,6 @@ call plug#begin('~/.vim/plugged')
 " information about the active document's current status.
 
 Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-
-" Colorscheme
-"let g:airline_theme='atomic'
 
 " Use large separator characters to force an uniform look
 let g:airline_left_sep        = ''
@@ -95,7 +124,7 @@ Plug 'dense-analysis/ale'
 
 " Linters specification
 let g:ale_linters = {'c': ['gcc'],
-\                    'cpp': ['gcc']
+\                    'cpp': ['g++']
 \                   }
 
 " Formatting options
@@ -103,20 +132,15 @@ let g:ale_sign_error         = '=>'
 let g:ale_sign_warning       = '->'
 
 " C specific options
-let g:ale_c_gcc_options      = '-std=c11 -Wall -Iinclude'
+let g:ale_c_gcc_options      = '-std=c11 -Wall -Wpedantic -Iinclude'
 let g:ale_c_parse_makefile   = 1
 
 " C++ specific options
-let g:ale_cpp_gcc_options    = '-std=c++11 -Wall -Iinclude'
+let g:ale_cpp_gcc_options    = '-std=c++20 -Wall -Iinclude'
 let g:ale_cpp_parse_makefile = 1
 
-" }}}2
-
-" C++ syntax {{{2
-" ---------------
-" C++ advanced syntax settings.
-
-Plug 'octol/vim-cpp-enhanced-highlight'
+" Haskell specific options
+let g:ale_haskell_ghc_options = '-dynamic'
 
 " }}}2
 
@@ -127,9 +151,6 @@ Plug 'octol/vim-cpp-enhanced-highlight'
 
 " challenger_deep
 Plug 'challenger-deep-theme/vim', { 'as': 'challenger-deep' }
-
-" snazzy
-"Plug 'connorholyday/vim-snazzy'
 
 "}}}2
 
@@ -166,13 +187,6 @@ Plug 'Jorengarenar/fauxClip'
 
 " }}}2
 
-" Fugitive {{{2
-" -------------
-
-Plug 'tpope/vim-fugitive'
-
-" }}}2
-
 " Goyo {{{2
 " ---------
 " Goyo removes all superfluous information from the screen and centers the
@@ -203,21 +217,6 @@ map <leader>l :Limelight!!<CR>
 
 " }}}2
 
-" Markdown syntax {{{2
-" --------------------
-" Show syntax highlighting in Markdown files.
-
-Plug 'plasticboy/vim-markdown'
-
-" Formatting options
-let g:vim_markdown_folding_disabled     = 1
-let g:vim_markdown_frontmatter          = 1
-let g:vim_markdown_math                 = 1
-let g:vim_markdown_new_list_item_indent = 2
-let g:vim_markdown_strikethrough        = 1
-
-" }}}2
-
 " NERDTree {{{2
 " -------------
 " NERDTree shows a directory tree at the left side of the screen, making the
@@ -237,7 +236,23 @@ map <leader>n :NERDTreeToggle<CR>
 
 Plug 'sheerun/vim-polyglot'
 
+" Disable Polyglot for the following filetypes
 let g:polyglot_disabled = ['tex']
+
+" C++ options
+let g:cpp_class_scope_highlight           = 1
+let g:cpp_member_variable_highlight       = 1
+let g:cpp_class_decl_highlight            = 1
+let g:cpp_posix_standard                  = 1
+let g:cpp_experimental_template_highlight = 1 " experimental_simple_template
+let g:cpp_concepts_highlight              = 1
+
+" Markdown options
+let g:vim_markdown_folding_disabled     = 1
+let g:vim_markdown_frontmatter          = 1
+let g:vim_markdown_math                 = 1
+let g:vim_markdown_new_list_item_indent = 2
+let g:vim_markdown_strikethrough        = 1
 
 " }}}2
 
@@ -275,7 +290,7 @@ Plug 'sirver/UltiSnips'
 " Snippets settings
 let g:UltiSnipsExpandTrigger       = "<tab>"
 let g:UltiSnipsJumpForwardTrigger  = "<C-B>"
-let g:UltiSnipsJumpBackwardTrigger = "<C-Z>"
+let g:UltiSnipsJumpBackwardTrigger = "<C-X>"
 let g:UltiSnipsEditSplit           = "vertical"
 
 " }}}2
@@ -306,9 +321,7 @@ command MDTexBf execute "%s/\\*\\{2\\}\\([^\\*\\{2\\}]\\+\\)\\*\\{2\\}/\\\\textb
 " Translate Markdown 1st level titling to LaTeX chapter
 command MDTexChapter execute "%s/^# \\+[^-a-zA-Z]*-\\? *\\(.\\+\\)$/\\\\chapter{\\1}/g"
 " Translate Markdown inline code to LaTeX style code
-command MDTexInlineCode execute "%s/`\\([^`]\\+\\)`/\\\\code{\\1}/g"
-" Translate Markdown inline code to LaTeX style code using texttt
-command MDTexInlineCodeTTT execute "%s/`\\([^`]\\+\\)`/\\\\texttt{\\1}/g"
+command MDTexInlineCodeTt execute "%s/`\\([^`]\\+\\)`/\\\\texttt{\\1}/g"
 " Translate Markdown 2nd level titling to LaTeX section
 command MDTexSection execute "%s/^## \\+[^-a-zA-Z]*-\\? *\\(.\\+\\)$/\\\\section{\\1}/g"
 " Translate Markdown 3rd level titling to LaTeX subsection
@@ -321,10 +334,10 @@ command MDTexSubsection execute "%s/^### \\+[^-a-zA-Z]*-\\? *\\(.\\+\\)$/\\\\sub
 " Custom key mappings to make the use of Vim much more comfortable.
 
 " Move through window splits with ^[HJKL] {{{2
-imap <silent> <C-K> <Esc>:wincmd k<CR>
-imap <silent> <C-J> <Esc>:wincmd j<CR>
-imap <silent> <C-H> <Esc>:wincmd h<CR>
-imap <silent> <C-L> <Esc>:wincmd l<CR>
+imap <silent> <C-K> <Esc>:wincmd k<CR>a
+imap <silent> <C-J> <Esc>:wincmd j<CR>a
+imap <silent> <C-H> <Esc>:wincmd h<CR>a
+imap <silent> <C-L> <Esc>:wincmd l<CR>a
  map <silent> <C-K>      :wincmd k<CR>
  map <silent> <C-J>      :wincmd j<CR>
  map <silent> <C-H>      :wincmd h<CR>
@@ -345,7 +358,7 @@ inoremap <silent> <F3> <Esc>:nohl<CR>a
 " Stilisation settings for the text window only.
 
 " Highlight text based on code syntax
-syntax enable
+syntax on
 
 " Colourscheme
 
