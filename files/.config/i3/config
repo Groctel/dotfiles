@@ -90,16 +90,12 @@ exec        --no-startup-id $input set Touchpad "libinput Tapping Enabled" 1
 # interface elements.
 # ==============================================================================
 
-#	Default font, can be overriden
+# Default font, can be overriden
 font pango:             Fira Code Retina 12
 
 # Explicit window border to completely hide title bars
 default_border          pixel 0
 default_floating_border pixel 0
-
-# Toggle border
-bindsym $meta+b         border none
-bindsym $meta+Shift+b   border pixel 3
 
 # Gaps settings
 gaps                    outer 0
@@ -197,21 +193,18 @@ bindsym $meta+$alt+Ctrl+k resize grow   height 01 px or 01 ppt
 bindsym $meta+$alt+Ctrl+j resize shrink height 01 px or 01 ppt
 bindsym $meta+$alt+Ctrl+h resize shrink width  01 px or 01 ppt
 
-# Modify container layout
-bindsym $meta+s            exec ~/.config/rofi/scripts/i3layout.sh
-
 # Manage loating containers
 bindsym $meta+space        "floating toggle; move absolute position center"
 bindsym $meta+$alt+space   "resize set 800 504; move absolute position center"
 bindsym $meta+Shift+space  focus mode_toggle
 floating_modifier          $meta
 
-# Switch next container's location (to the right or below), marked in border
+# Switch next container's location (to the right or below)
 bindsym $meta+r            split toggle splitv
 bindsym $meta+Shift+r      split toggle splith
 
 # Close target container
-bindsym $alt+F4            kill
+bindsym $meta+Q            kill
 
 # Focus the latest urgent container
 bindsym $meta+x            [urgent=latest] focus
@@ -294,47 +287,59 @@ bindsym --release $meta+Shift+p exec $screenshot --select $screenshotdir
 # ==============================================================================
 
 # Start the default terminal
-bindsym $meta+Return  exec   $TERMINAL
+bindsym $meta+Return  exec $TERMINAL
+
+# Clear the clipboard
+bindsym $meta+c       exec echo "" | xclip -r -sel clip
 
 # Reload the configuration file without restarting i3
-bindsym $meta+$alt+c  exec   reload
+bindsym $meta+$alt+c  exec reload
 
 # Start Rofi, a program launcher
-bindsym $meta+d       exec   $rofi
+bindsym $meta+d       exec $rofi
 
 # Start the default file manager
-bindsym $meta+e       exec   $filemanager
-
-# Prompt to end session
-bindsym $meta+$alt+e  exec   ~/.config/rofi/scripts/power.sh
+bindsym $meta+e       exec $filemanager
 
 # Start the default graphical file manager
-bindsym $meta+Shift+e exec    $filemanagergui
+bindsym $meta+Shift+e exec $filemanagergui
+
+# Open Newsboat, an RSS news aggregator
+bindsym $meta+n       exec $TERMINAL newsboat
+
+# Open Podboat, Newsboat's podcast downloader
+bindsym $meta+Shift+n exec $TERMINAL podboat
 
 # Lock the session with betterlockscreen
-bindsym $meta+$alt+q  exec    betterlockscreen -l dim -t \
-                              "$(date | sed 's/ ..:..:..//g')" \
-                              & betterlockscreen -u \
-                              ~/Pictures/Wallpapers/
+bindsym $meta+$alt+q  exec betterlockscreen -l dim -t \
+                           "$(date +"%A %d %b %Z %Y")" \
+                           & betterlockscreen -u \
+                           ~/Pictures/Wallpapers/
 
 # Restart i3 in place, without terminating the session
 bindsym $meta+$alt+r  restart
 
-# Launch Rofi with an unicode character picker
-bindsym $meta+u       exec    unipicker --command "rofi -dmenu" \
-                              | xclip -r -sel clip
+# Open Screenkey a software to show the most recent key presses
+bindsym $meta+s       exec screenkey
 
-# Open vim
-bindsym $meta+v       exec    $TERMINAL vim
-
-# ==============================================================================
-# CUSTOM SCRIPTS
-# ------------------------------------------------------------------------------
-# Keysyms to launch custom scripts (.config/i3/scripts).
-# ==============================================================================
+# Close all Screenkey instances
+bindsym $meta+Shift+s exec killall -q screenkey
 
 # Toggle touchpad
-bindsym $meta+$alt+t exec --no-startup-id $input toggle Touchpad
+bindsym $meta+$alt+t  exec --no-startup-id $input toggle Touchpad
+
+# Launch Rofi with an unicode character picker
+bindsym $meta+u       exec unipicker --command "rofi -dmenu" \
+                           | xclip -r -sel clip
+
+# Launch Rofimoji, an emoji picker
+bindsym $meta+Shift+u exec rofimoji
+
+# Open vim
+bindsym $meta+v       exec $TERMINAL vim
+
+# Update the system
+bindsym $meta+y       exec $TERMINAL --hold yay
 
 # ==============================================================================
 # STATUS BAR
