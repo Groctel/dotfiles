@@ -74,9 +74,7 @@ alias er="ranger ~/Documents/Repositorios"
 alias eui="ranger ~/Documents/UGR/ugr-informatica"
 
 # Vim commands (I use them by mistake more than I would admit while sober)
-alias q="exit"
-alias qa="poweroff"
-alias wqa="yes | sudo pacman -Syu && poweroff"
+alias wqa="sudo pacman -Syu --noconfirm && poweroff"
 
 # Zip arguments
 alias ziptelegram="zip -9rv -s 1500m"
@@ -86,9 +84,15 @@ alias antonio="man" # Shoutouts to @advy99!
 alias l="ls -lahX --group-directories-first"
 alias ll="ls -lhX --group-directories-first"
 alias please="sudo "
+alias q="exit"
+alias qp="qsh -p -d $HOME/.local/share/q/"
+alias qsh="qsh -d $HOME/.local/share/q/"
 alias sudo="sudo "
 alias t="tree -a"
 alias tt="tree"
+alias youtube-dl="youtube-dl -f bestvideo+bestaudio -o '~/Videos/YouTube/%(title)s.%(ext)s'"
+alias youtube-dl-music="youtube-dl -x --audio-format mp3 -o '~/Music/_new/%(title)s.%(ext)s'"
+alias yayvim="vim +PlugUpdate +qa"
 
 eval $(thefuck --alias)
 
