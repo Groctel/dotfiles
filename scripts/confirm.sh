@@ -16,41 +16,39 @@
 confirm () {
 	answer=-1
 
-#	Force an answer from the user
-	while :; do
-	#	Print the question with format "Question? [Y/n]:"
-		if [ "$1" = "yes" ]; then
-			printf "%s? [Y/n]: " "$2";
-		elif [ "$1" = "no" ]; then
-			printf "%s? [y/N]: " "$2";
-		else
-			printf "%s? [y/n]: " "$1";
-		fi;
+	while [ $answer -eq -1 ]; do
+		case "$1" in
+		[Yy]*)
+			printf "%s? [Y/n]: " "$2"
+		;;
+		[Nn]*)
+			printf "%s? [y/N]: " "$2"
+		;;
+		*)
+			printf "%s? [y/n]: " "$1"
+		;;
+		esac
 
-		read -r yn;
+		read -r yn
 
-	#	Read answer depending on the first character
 		case $yn in
-			[Yy]* )
-				answer=0;
-			break;;
-
-			[Nn]* )
-				answer=1;
-			break;;
-
-			*     )
-			#	Different behaviour depending on answer priority
-				if [ "$1" = "yes" ]; then
-					answer=0;
-					break;
-				elif [ "$1" = "no" ]; then
-					answer=1;
-					break;
-				fi;
+		[Yy]*)
+			answer=0
+		;;
+		[Nn]*)
+			answer=1;
+		;;
+		*)
+			case "$1" in
+			[Yy]*)
+				answer=0
+			;;
+			[Nn]*)
+				answer=1
+			;;
+			esac
 		esac
 	done
 
 	return $answer
 }
-
