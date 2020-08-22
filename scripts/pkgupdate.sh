@@ -6,7 +6,5 @@
 # ==============================================================================
 
 pkgupdate () {
-	if confirm "yes" "Update package list"; then
-		yay -Qe | sed 's/ .*$//g' > pkglist;
-	fi
+	confirm "yes" "Update package list" && yay -Qe | sed 's/ .*$//g' > pkglist
 }
