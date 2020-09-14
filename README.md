@@ -20,6 +20,6 @@ It also reads the packages from `pkglist`.
 
 # Screenshots
 
-![](https://i.imgur.com/ELCiyn4.jpg)
+![](https://raw.githubusercontent.com/Groctel/Groctel/main/images/screenshots/dotfiles-wallpaper.png)
 
-![](https://i.imgur.com/1rmIbj5.jpg)
+![](https://raw.githubusercontent.com/Groctel/Groctel/main/images/screenshots/dotfiles-screens.png)
