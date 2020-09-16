@@ -1,0 +1,37 @@
+#!/bin/sh
+
+editor="vim"
+file=""
+
+case "$1" in
+entr)
+	file="$HOME/.config/scripts/init/entr.sh"
+;;
+i3)
+	file="$HOME/.config/i3/config"
+;;
+kitty)
+	file="$HOME/.config/kitty/kitty.conf"
+;;
+ranger)
+	file="$HOME/.config/ranger/rc.conf"
+;;
+mime)
+	file="$HOME/.config/mimeapps.list"
+;;
+rofi)
+	file="$HOME/.config/rofi/config.rasi"
+;;
+vim)
+	file="$HOME/.vimrc"
+;;
+zsh)
+	file="$HOME/.zshrc"
+;;
+*)
+	printf "\033[1;31mFile \"%s\" not registered.\033[0m\n" "$1"
+	exit 1
+;;
+esac
+
+$editor "$file"

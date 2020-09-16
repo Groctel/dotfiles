@@ -1,0 +1,37 @@
+#!/bin/sh
+
+explorer="ranger"
+path=""
+
+case "$1" in
+d|doc)
+	path="$HOME/Documents"
+;;
+dw|down)
+	path="$HOME/Downloads"
+;;
+m|mus)
+	path="$HOME/Music"
+;;
+p|pic)
+	path="$HOME/Pictures"
+;;
+r|rep)
+	path="$HOME/Documents/Repositorios"
+;;
+t|tel)
+	path="$HOME/Downloads/Telegram\ Desktop/"
+;;
+ui)
+	path="$HOME/Documents/UGR/ugr-informatica"
+;;
+v|vid)
+	path="$HOME/Videos"
+;;
+*)
+	printf "\033[1;31mPath \"%s\" not registered.\033[0m\n" "$1"
+	exit 1
+;;
+esac
+
+$explorer "$path"
