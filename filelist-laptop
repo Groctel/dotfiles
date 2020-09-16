@@ -1,0 +1,5 @@
+.asoundrc
+.newsboat/clipboard-append.sh
+.newsboat/config
+.newsboat/rss_files/*
+.newsboat/urls

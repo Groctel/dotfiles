@@ -1,0 +1,5 @@
+[pull]
+	rebase = false
+[user]
+	email = groctel@protonmail.com
+	name = Groctel

@@ -6,17 +6,12 @@ Add them to your system if you want, I couldn't care less.** *Ron Swanson*
 
 ## Dotfiles manager
 
-The files can be managed with `dotfiler.sh`, which accepts one of two arguments:
+I'm using [Dotfiler](https://github.com/Groctel/dotfiles-manager), my own dotfiles manager.
+It can be updated to the latest version with this command:
 
-| ARGUMENT     | DESCRIPTION                                     |
-| :----------- | :---------------------------------------------- |
-| `deploy`     | Deploys dotfiles to the system.                 |
-| `pkginstall` | Installs packages to the system with `yay`.     |
-| `pkgupdate`  | Updates the installed packages list with `yay`. |
-| `pull`       | Copies dotfiles into the repository.            |
-
-This script reads the dotfiles from `filelist`, saves them to the repository and copies them into the home directory.
-It also reads the packages from `pkglist`.
+```sh
+curl -fLo dotfiler.sh https://raw.githubusercontent.com/Groctel/dotfiles-manager/main/dotfiler.sh
+```
 
 # Screenshots
 
