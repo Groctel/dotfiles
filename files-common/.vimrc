@@ -74,6 +74,9 @@ Plug 'vim-airline/vim-airline'
 " Use large separator characters to force an uniform look
 let g:airline_powerline_fonts = 1
 let g:airline_detect_paste    = 1
+" Visual style
+let g:airline_left_sep=''
+let g:airline_right_sep=''
 " Extensions
 let g:airline#extensions#whitespace#enabled = 0
 let g:airline#extensions#tabline#enabled = 1
@@ -98,10 +101,10 @@ let g:ale_change_sign_column_color = 1
 let g:ale_sign_error   = ' ✘'
 let g:ale_sign_warning = ' ●'
 " C specific options
-let g:ale_c_gcc_options    = '-std=c11 -Wall -Wextra -Wpedantic -Wfloat-equal -Iinclude'
+let g:ale_c_cc_options     = '-std=c11 -Wall -Wextra -Wpedantic -Wfloat-equal -Iinclude'
 let g:ale_c_parse_makefile = 1
 " C++ specific options
-let g:ale_cpp_gcc_options    = '-std=c++20 -Wall -Wextra -Wpedantic -Wfloat-equal -Iinclude'
+let g:ale_cpp_cc_options     = '-std=c++11 -Wall -Wextra -Wpedantic -Wfloat-equal -Iinclude'
 let g:ale_cpp_parse_makefile = 1
 " Haskell specific options
 let g:ale_haskell_ghc_options = '-dynamic'
@@ -186,6 +189,12 @@ let g:undotree_SetFocusWhenToggle = 1
 let g:undotree_ShortIndicators = 1
 let g:undotree_TreeNodeShape = '◯'
 let g:undotree_WindowLayout = 2
+" }}}2
+
+" VimTeX {{{2
+Plug 'lervag/vimtex'
+let g:tex_flavor='latex'
+let g:vimtex_compiler_enabled=0
 " }}}2
 
 call plug#end() " required
