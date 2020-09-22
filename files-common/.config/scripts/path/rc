@@ -23,7 +23,7 @@ rofi)
 	file="$HOME/.config/rofi/config.rasi"
 ;;
 vim)
-	file="$HOME/.vimrc"
+	file="$HOME/.vim/vimrc"
 ;;
 zsh)
 	file="$HOME/.zshrc"
