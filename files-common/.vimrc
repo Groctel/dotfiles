@@ -104,7 +104,7 @@ let g:ale_sign_warning = ' ●'
 let g:ale_c_cc_options     = '-std=c11 -Wall -Wextra -Wpedantic -Wfloat-equal -Iinclude'
 let g:ale_c_parse_makefile = 1
 " C++ specific options
-let g:ale_cpp_cc_options     = '-std=c++11 -Wall -Wextra -Wpedantic -Wfloat-equal -Iinclude'
+let g:ale_cpp_cc_options     = '-std=c++17 -Wall -Wextra -Wpedantic -Wfloat-equal -Iinclude'
 let g:ale_cpp_parse_makefile = 1
 " Haskell specific options
 let g:ale_haskell_ghc_options = '-dynamic'
