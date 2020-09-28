@@ -1,16 +1,8 @@
 #!/bin/sh
 
-# ==============================================================================
-# I3 INITIALISER
-# ------------------------------------------------------------------------------
-# Controls the initialisation of the userspace processes started with the i3
-# session.
-# ------------------------------------------------------------------------------
-# ARGS:
-# - $1 -> String : Operation to perform
-# ==============================================================================
+operation="$1"
 
-[ "$1" = "always" ] && {
+[ "$operation" = "always" ] && {
 	# Call the individual initialiser of every file in ./init/
 	path="$(echo "$0" | sed 's/\/'"$(basename "$0")"'//')"
 

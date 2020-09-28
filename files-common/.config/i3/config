@@ -66,9 +66,6 @@ set $mpd       ~/.config/scripts/mpd.sh
 # The default rofi path
 set $rofi      ~/.config/rofi/drun.sh
 
-# Environment terminator
-set $terminate .config/scripts/terminate.sh
-
 # ==============================================================================
 # AUTOSTART PROGRAMS
 # ------------------------------------------------------------------------------
@@ -241,7 +238,7 @@ bindsym $meta+m           exec $mpd init $TERMINAL
 bindsym $meta+Shift+m     exec $mpd kill
 
 # Toggle play/pause the music player
-bindsym $meta+$alt+Right  exec $mpd toggle $TERMINAL
+bindsym $meta+$alt+Right  exec $mpd toggle
 
 # Advance to the next song
 bindsym $meta+Right       exec $mpd next

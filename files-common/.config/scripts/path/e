@@ -3,7 +3,9 @@
 explorer="ranger"
 path=""
 
-case "$1" in
+path="$(echo "$1" | tr '[:upper:]' '[:lower:]')"
+
+case "$path" in
 d|doc)
 	path="$HOME/Documents"
 ;;
@@ -27,10 +29,6 @@ ui)
 ;;
 v|vid)
 	path="$HOME/Videos"
-;;
-*)
-	printf "\033[1;31mPath \"%s\" not registered.\033[0m\n" "$1"
-	exit 1
 ;;
 esac
 
