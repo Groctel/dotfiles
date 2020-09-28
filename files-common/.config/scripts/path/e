@@ -22,7 +22,7 @@ r|rep)
 	path="$HOME/Documents/Repositorios"
 ;;
 t|tel)
-	path="$HOME/Downloads/Telegram\ Desktop/"
+	path="$HOME/Downloads/Telegram Desktop/"
 ;;
 ui)
 	path="$HOME/Documents/UGR/ugr-informatica"
