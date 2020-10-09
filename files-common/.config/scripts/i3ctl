@@ -1,0 +1,69 @@
+#!/bin/sh
+
+operation="$1"
+shift
+
+Kill ()
+{
+	while pgrep "$1"
+	do
+		killall "$1" && sleep 1
+	done
+}
+
+Restart () {
+	Kill "$1" && Start "$1"
+}
+
+Start ()
+{
+	case "$1" in
+	entr)
+		echo ~/.config/i3/config | entr -p i3 reload &
+		echo ~/.zshrc | entr -p kitty &
+	;;
+	nm-applet)
+		nm-applet&
+	;;
+	picom)
+		picom --experimental-backends&
+	;;
+	polybar)
+		~/.config/polybar/launch.sh&
+	;;
+	redshift)
+		redshift -xt 6500K:6500K&
+	;;
+	*)
+		echo "$1 not known by init"
+	;;
+	esac
+}
+
+case "$operation" in
+[Ff]irst)
+	feh --bg-fill ~/Pictures/departure-songs.jpg
+	kitty sh -c "pfetch; zsh"
+	exit 0
+;;
+esac
+
+while [ $# -gt 0 ]
+do
+	case "$operation" in
+	[Kk]ill)
+		Kill "$1" &
+	;;
+	[Rr]estart)
+		Restart "$1" &
+	;;
+	[Ss]tart)
+		Start "$1" &
+	;;
+	*)
+		echo "Unregistered operation"
+		exit 1
+	;;
+	esac
+	shift
+done

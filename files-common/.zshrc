@@ -42,9 +42,6 @@ alias ytdlm="youtube-dl -x --audio-format mp3 -o '~/Music/_new/%(title)s.%(ext)s
 eval $(thefuck --alias)
 
 # Constants exporting
-export PATH=$HOME/.config/scripts/path:$PATH
-export HOSTNAME="grocpc"
-export PF_INFO="ascii title os kernel wm pkgs shell uptime"
 
 # History
 SAVEHIST=100000
