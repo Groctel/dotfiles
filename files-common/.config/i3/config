@@ -134,6 +134,35 @@ bindsym $meta+x       [urgent=latest] focus
 bindsym $meta+$alt+s mark --add "swapee"; mode "swap";
 
 mode "swap" {
+	set $ws1  "1"
+	set $ws2  "2"
+	set $ws3  "3"
+	set $ws4  "4"
+	set $ws5  "5"
+	set $ws6  "6"
+	set $ws7  "7"
+	set $ws8  "8"
+	set $ws9  "9"
+	set $ws10 "10"
+
+	bindsym $meta+1         workspace $ws1
+	bindsym $meta+2         workspace $ws2
+	bindsym $meta+3         workspace $ws3
+	bindsym $meta+4         workspace $ws4
+	bindsym $meta+5         workspace $ws5
+	bindsym $meta+6         workspace $ws6
+	bindsym $meta+7         workspace $ws7
+	bindsym $meta+8         workspace $ws8
+	bindsym $meta+9         workspace $ws9
+	bindsym $meta+0         workspace $ws10
+	bindsym $meta+Tab       workspace next_on_output
+	bindsym $meta+Shift+Tab workspace prev_on_output
+
+	bindsym $meta+h focus left
+	bindsym $meta+j focus down
+	bindsym $meta+k focus up
+	bindsym $meta+l focus right
+
 	bindsym Escape unmark "swapee"; mode "default";
 	bindsym Return swap container with mark "swapee"; unmark "swapee"; \
 	               mode "default";
