@@ -21,9 +21,9 @@ set $screenshot     scrot --freeze --quality 100
 set $screenshotdir  ~/Pictures/Screenshots/Screen\ %Y-%m-%d\ %H:%M:%S.png
 set $TERMINAL       kitty
 
-set $ctl   .config/scripts/i3ctl
-set $input .config/scripts/inputmgr
-set $mpd   .config/scripts/mpdctl
+set $ctl   .local/bin/i3ctl
+set $input .local/bin/inputmgr
+set $mpd   .local/bin/mpdctl
 set $rofi  .config/rofi/drun.sh
 
 # RUN COMMANDS

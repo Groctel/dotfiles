@@ -10,6 +10,11 @@
 .dhexrc
 .gitconfig
 .icons/*
+.local/bin/e
+.local/bin/i3ctl
+.local/bin/inputmgr
+.local/bin/mpdctl
+.local/bin/rc
 .local/share/fonts/*
 .profile
 .vim/ftplugin/*
