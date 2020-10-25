@@ -32,7 +32,6 @@ alias ziptelegram="zip -9rv -s 1500m"
 # Misc
 alias l="ls -lahX --group-directories-first"
 alias ll="ls -lhX --group-directories-first"
-alias p3="python3"
 alias sudo="sudo "
 alias t="tree -a"
 alias tt="tree"
