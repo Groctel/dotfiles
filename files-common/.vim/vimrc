@@ -15,8 +15,8 @@ autocmd BufNewFile,BufRead *.tikz set filetype=tex
 " }}}1
 
 " Options setting {{{1
-" Buffer navigation {{{2
-set mouse=a
+" Buffer management {{{2
+set hidden
 set number
 set relativenumber
 set scrolloff=5
@@ -45,6 +45,7 @@ set tabstop=3
 
 " Other {{{2
 set foldmethod=marker
+set mouse=nvi
 set showcmd
 "set t_ut="" " Redraw the whole window every time there's an update
 " }}}2
@@ -61,6 +62,8 @@ let g:airline_detect_paste    = 1
 " Visual style
 let g:airline_left_sep=''
 let g:airline_right_sep=''
+let g:airline_left_alt_sep = '\'
+let g:airline_right_alt_sep = '\'
 " Extensions
 let g:airline#extensions#whitespace#enabled = 0
 let g:airline#extensions#tabline#enabled = 1
@@ -179,6 +182,12 @@ let g:undotree_WindowLayout = 2
 Plug 'lervag/vimtex'
 let g:tex_flavor='latex'
 let g:vimtex_compiler_enabled=0
+" Indentation options
+let g:vimtex_indent_enabled      = 0
+let g:vimtex_indent_bib_enabled  = 0
+let g:vimtex_indent_conditionals = {}
+let g:vimtex_indent_delims       = {}
+let g:vimtex_indent_lists        = []
 " }}}2
 
 call plug#end() " required
@@ -189,26 +198,17 @@ call plug#end() " required
 command MDTexBf execute "%s/\\*\\{2\\}\\([^\\*\\{2\\}]\\+\\)\\*\\{2\\}/\\\\textbf{\\1}/g"
 " Translate Markdown 1st level titling to LaTeX chapter
 command MDTexChapter execute "%s/^# \\+[^-a-zA-Z]*-\\? *\\(.\\+\\)$/\\\\chapter{\\1}/g"
-" Translate Markdown inline code to LaTeX style code
-command MDTexInlineCodeTt execute "%s/`\\([^`]\\+\\)`/\\\\texttt{\\1}/g"
+" Translate itemize items to LaTeX style code
+command MDTexItem execute "%s/^\\([\\t ]*\\)-/\\1\\\\item/g"
 " Translate Markdown 2nd level titling to LaTeX section
 command MDTexSection execute "%s/^## \\+[^-a-zA-Z]*-\\? *\\(.\\+\\)$/\\\\section{\\1}/g"
 " Translate Markdown 3rd level titling to LaTeX subsection
 command MDTexSubsection execute "%s/^### \\+[^-a-zA-Z]*-\\? *\\(.\\+\\)$/\\\\subsection{\\1}/g"
+" Translate Markdown inline code to LaTeX style code
+command MDTexTt execute "%s/`\\([^`]\\+\\)`/\\\\texttt{\\1}/g"
 " }}}1
 
 " Mappings {{{1
-" Move through window splits with ^[HJKL] {{{2
-imap <silent> <C-K> <Esc>:wincmd k<CR>a
-imap <silent> <C-J> <Esc>:wincmd j<CR>a
-imap <silent> <C-H> <Esc>:wincmd h<CR>a
-imap <silent> <C-L> <Esc>:wincmd l<CR>a
- map <silent> <C-K>      :wincmd k<CR>
- map <silent> <C-J>      :wincmd j<CR>
- map <silent> <C-H>      :wincmd h<CR>
- map <silent> <C-L>      :wincmd l<CR>
-" }}}2
-
 " Buffer navigation {{{2
 map <silent> <C-N> :bn<CR>
 map <silent> <C-P> :bp<CR>
