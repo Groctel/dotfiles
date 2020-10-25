@@ -6,7 +6,6 @@
 .config/polybar/*
 .config/ranger/*
 .config/rofi/*
-.config/scripts/*
 .dhexrc
 .gitconfig
 .icons/*

@@ -1,13 +1,11 @@
 #!/bin/sh
 
-# ==============================================================================
-# DOTFILER
-# ------------------------------------------------------------------------------
+# === DOTFILER ===
+#
 # A POSIX shell program to keep your dotfiles up to date in a repository.
-# ------------------------------------------------------------------------------
+#
 # THIS PROGRAM IS LICENCED UNDER THE GNU GENERAL PUBLIC LICENCE V2.0. PLEASE
 # READ THE LICENCE HERE: https://opensource.org/licenses/gpl-2.0.php
-# ==============================================================================
 
 Help () {
 cat << EOF
@@ -78,22 +76,20 @@ EOF
 }
 }
 
-# ==============================================================================
-# CONFIRM
-# ------------------------------------------------------------------------------
+# == CONFIRM ==
+#
 # Prompts the user with a yes/no question. If priority for "yes" or "no" is
 # specified, an empty string or any answer other than the not prioritised one
 # will be interpreted as the prioritised one.
-# ------------------------------------------------------------------------------
-# ARGS:
+#
+# == Args ==
 # - $1 -> String : Either "yes" or "no" to set the answer priority or the
 #                  question string if no priority is specified.
 # - $2 -> String : The question string if priority is specified.
-# ------------------------------------------------------------------------------
-# RETURNS:
+#
+# == Returns ==
 # EXIT_SUCCESS (0) is "yes" was answered and EXIT_FAILURE (1) otherwise, so that
 # the function can be used with && and ||.
-# ==============================================================================
 
 Confirm () {
 	answer=-1
@@ -110,7 +106,8 @@ Confirm () {
 	;;
 	esac
 
-	while [ $answer -eq -1 ]; do
+	while [ $answer -eq -1 ]
+	do
 		read -r yn
 
 		case $yn in
@@ -136,19 +133,17 @@ Confirm () {
 	return $answer
 }
 
-# ==============================================================================
-# ARRAY FUNCTIONS
-# ------------------------------------------------------------------------------
+# == ARRAY FUNCTIONS ==
+#
 # - FRONT: Reads the first item of a comma separated string array.
 # - POP: Removes the first item from a comma separated string array.
-# ------------------------------------------------------------------------------
-# ARGS:
+#
+# == Args ==
 # - $1 -> String : The comma separated string array
-# ------------------------------------------------------------------------------
-# RETURNS:
+#
+# == Returns ==
 # - FRONT: The first item of the array.
 # - POP: The array with the first item removed.
-# ==============================================================================
 
 Front () {
 	echo "$1" | sed 's/, */\n/g' | sed 'q;d'
@@ -158,73 +153,79 @@ Pop () {
 	echo "$1" | sed 's/^,\?[^,]*,\? *//g'
 }
 
-# ==============================================================================
-# COPYFILES
-# ------------------------------------------------------------------------------
+# == COPY FILES ==
+#
 # Reads files from a text file and copies them in the root destination
 # directory.
-# ------------------------------------------------------------------------------
-# ARGS:
+#
+# == Args ==
 # - $1 -> String : System files to be read and copied
 # - $2 -> String : Source root firectory of files
 # - $3 -> String : Destination root firectory of files
 # - $4 -> String : Operation name to print on screen
 # - $5 -> String : Optional overwrite string to rename destination files
-# ==============================================================================
 
 CopyFiles () {
-	while read -r line; do
+	while read -r line
+	do
 		printf "\033[1;32m -> \033[0m%s %s\n" "$4" "$line";
 		cp -r "$2/"$line "$(Prepare "$line" "$3/" "$5")"
 	done < "filelist$1"
 }
 
-# ==============================================================================
-# CHOOSE DISTRO
-# ==============================================================================
-# Gets the distro ID string from /etc/os-release and composes the distro
-# specific function call with the distro name and the function prefix, then
-# calls it. It basically holds the distro switches in one place with a kind of
-# lambda function structure if you want to call it that.
-# ------------------------------------------------------------------------------
-# ARGS:
-# - $1 -> String : Operation to compose the function call with
-# - $2 -> String : The system tag
-# ==============================================================================
+# == FIND PACKAGE MANAGER ==
+#
+# Finds the package manager installed in the system.
+#
+# == Args ==
+# - $@ -> Strings : All package managers to try ordered by preference
+#
+# == Returns ==
+# The package manager found in the system, first letter capitalised.
 
-ChooseDistro () {
-	distro="$(grep "^ID=" /etc/os-release | sed 's/ID=//g')"
+FindManager () {
+	while [ $# -gt 0 ] && [ "$manager" = "" ]
+	do
+		which "$1" 1>/dev/null 2>&1 &&
+			manager="$(echo "$1" | sed 's/^./\U&/')"
+		shift
+	done
 
-	case "$distro" in
-	arch)
-		operation="$1""Arch"
-	;;
-	ubuntu)
-		operation="$1""Ubuntu"
-	;;
-	*)
-		printf "\033[1;31mNo package manager configured for %s.\033[0m\n" \
-	          "$distro"
-	;;
-	esac
-
-	$operation "$2"
+	echo "$manager"
 }
 
-# ==============================================================================
-# PREPARE
-# ------------------------------------------------------------------------------
+# == CHOOSE PACKAGE MANAGER ==
+#
+# Uses a lambda function structure to call the appropriate package manager and
+# perform the specified action.
+#
+# == Args ==
+# - $1 -> String : Operation to compose the function call with
+# - $2 -> String : The system tag
+
+ChoosePkgMgr () {
+	manager="$(FindManager "apt" "dnf" "yay" "pacman")"
+
+	if [ "$manager" = "" ]
+	then
+		printf "\033[1;31mYour package manager is not configured.\033[0m\n"
+	else
+		$1$manager "$2"
+	fi
+}
+
+# == PREPARE ==
+#
 # Reads a line and creates a directory in the destination directory if required.
-# ------------------------------------------------------------------------------
-# ARGS:
+#
+# == Args ==
 # - $1 -> String : Line to be read
 # - $2 -> String : Destination root directory of files
 # - $3 -> String : Optional overwrite string to rename destination files
-# ------------------------------------------------------------------------------
-# RETURNS:
+#
+# == Returns ==
 # The line's file name or parent directory name suffixed by the overwrite
 # string, which might be empty.
-# ==============================================================================
 
 Prepare () {
 	case "$1" in
@@ -240,16 +241,14 @@ Prepare () {
 	echo "$2$path"
 }
 
-# ==============================================================================
-# DEPLOY FILES
-# ------------------------------------------------------------------------------
+# == DEPLOY FILES ==
+#
 # Reads the appropriate filelist file and deploys the specified files to the
 # host's $HOME directory. If the user denies overwriting, it makes CopyFiles
 # create ".new" files and directories instead.
-# ------------------------------------------------------------------------------
-# ARGS:
+#
+# == Args ==
 # - $1 -> String : The target system string
-# ==============================================================================
 
 Deploy () {
 	overwrite=""
@@ -269,23 +268,20 @@ Deploy () {
 	}
 }
 
-# ==============================================================================
-# INSTALL PACKAGES
-# ------------------------------------------------------------------------------
+# == INSTALL PACKAGES ==
+#
 # Reads the appropriate pkglist file and installs the specified packages in the
 # host's system with their distro's manager. It allows the user to  review the
 # packages they're going to install before doing do. Below this function are all
 # distro subfunctions.
-# ------------------------------------------------------------------------------
-# ARGS (INSTALL):
+#
+# == Args (Install) ==
 # - $1 -> String : The target system string
-# ------------------------------------------------------------------------------
-# ARGS (INSTALL [DISTRO]):
+#
+# == Args (InstallManager) ==
 # - $1 -> String : The system tag
-# ==============================================================================
 
 Install () {
-	distro="$(grep "^ID=" /etc/os-release | sed 's/ID=//g')"
 	sysname="$1"
 	systag="-$1"
 
@@ -303,43 +299,45 @@ Install () {
 	}
 
 	Confirm "no" "Proceed with the $sysname packages installation" &&
-		ChooseDistro "Install" "$systag"
+		ChoosePkgMgr "Install" "$systag"
 }
 
-InstallArch () {
-	if Confirm "yes" "Install with \"yay\" the AUR manager"; then
-		git --version 1>/dev/null 2>&1 || sudo pacman --noconfirm -S git
 
-		pacman -Q yay >/dev/null || {
-			rm -rf yay 1>/dev/null 2>&1
-			git clone https://aur.archlinux.org/yay.git
-			cd yay && makepkg --noconfirm -si && cd ..
-			rm -rf yay;
-		}
-
-		yay --noconfirm --answerclean All --answerdiff None --answeredit None \
-		    --needed -S - < "pkglist$1"
-	else
-		sudo pacman --noconfirm -S - < "pkglist$1"
-	fi
-}
-
-InstallUbuntu () {
-	if Confirm "yes" "Install with \"apt\" package manager"; then
+InstallApt () {
+	Confirm "yes" "Install with \"apt\" package manager" && {
 		git --version 1>/dev/null 2>&1 || sudo apt install git -y
 		xargs sudo apt install -y < "pkglist$1"
-	fi
+	}
 }
 
-# ==============================================================================
-# PULL FILES
-# ------------------------------------------------------------------------------
+InstallDnf () {
+	sudo dnf install -y < "pkglist$1"
+}
+
+InstallPacman () {
+	sudo pacman --noconfirm -S - < "pkglist$1"
+}
+
+InstallYay () {
+	pacman -Q yay 1>/dev/null 2>&1 || {
+		git --version 1>/dev/null 2>&1 || sudo pacman --noconfirm -S git
+		rm -rf yay 1>/dev/null 2>&1
+		git clone https://aur.archlinux.org/yay.git
+		cd yay && makepkg --noconfirm -si && cd ..
+		rm -rf yay;
+	}
+
+	yay --noconfirm --answerclean All --answerdiff None --answeredit None \
+	    --needed -S - < "pkglist$1"
+}
+
+# == PULL FILES ==
+#
 # Reads the appropriate filelist file and pulls the specified files to the
 # corresponding files directory.
-# ------------------------------------------------------------------------------
-# ARGS:
+#
+# == Args ==
 # - $1 -> String : The target system string
-# ==============================================================================
 
 Pull () {
 	sysname="$1"
@@ -358,19 +356,17 @@ Pull () {
 	}
 }
 
-# ==============================================================================
-# UPDATE PACKAGES
-# ------------------------------------------------------------------------------
+# == UPDATE PACKAGES ==
+#
 # Updates the appropriate pkglist filewith the packages explicitly installed in
 # the host's system using their distro's manager. Below this function are all
 # distro subfunctions.
-# ------------------------------------------------------------------------------
-# ARGS (UPDATE):
+#
+# == Args (update) ==
 # - $1 -> String : The target system string
-# ------------------------------------------------------------------------------
-# ARGS (UPDATE [DISTRO]):
+#
+# == Args (UpdateDistro) ==
 # - $1 -> String : The system tag
-# ==============================================================================
 
 Update () {
 	sysname="$1"
@@ -382,14 +378,10 @@ Update () {
 	}
 
 	Confirm "yes" "Update \"$sysname\" package list" &&
-		ChooseDistro "Update" "$systag"
+		ChoosePkgMgr "Update" "$systag"
 }
 
-UpdateArch () {
-	yay -Qe | sed 's/ .*$//g' > "pkglist$1"
-}
-
-UpdateUbuntu () {
+UpdateApt () {
 	apt-mark showmanual | sort -u > "manlist"
 	gzip -dc /var/log/installer/initial-status.gz \
 		| sed -n 's/^Package: //p' \
@@ -398,17 +390,23 @@ UpdateUbuntu () {
 	rm "manlist" "initlist"
 }
 
-# ==============================================================================
-# EXTRA DEPENDENCIES
-# ------------------------------------------------------------------------------
+UpdatePacman () {
+	pacman -Qe | sed 's/ .*$//g' > "pkglist$1"
+}
+
+UpdateYay () {
+	yay -Qe | sed 's/ .*$//g' > "pkglist$1"
+}
+
+# == EXTRA DEPENDENCIES ==
+#
 # Reads the appropriate deplist file and runs the specified commands to install
 # the extra dependencies required by the system. It also resets the terminal
 # emulators settings in case some of the operations messed with it, which can
-# happen when calling Vim.
-# ------------------------------------------------------------------------------
-# ARGS:
+# happen when calling other programs such as Vim.
+#
+# == Args ==
 # - $1 -> String : The target system string
-# ==============================================================================
 
 Extra () {
 	old_stty_settings="$(stty -g)"
@@ -424,87 +422,90 @@ Extra () {
 	printf "\033[1;35m==> \033[0;1mProcessing \"%s\" dependencies\n\033[0m" \
 	       "$sysname"
 
-	while read -r line; do
+	while read -r line
+	do
 		sh -c "$line"
 	done < "deplist$systag"
 
 	stty "$old_stty_settings" 1>/dev/null 2>&1
 }
 
-# ==============================================================================
-# MAIN
-# ------------------------------------------------------------------------------
+# == MAIN ==
+#
 # Handles the execution of the program based on the args provided to it. See the
 # help text to learn about the arguments Dotfiler takes.
-# ==============================================================================
 
 operations=""
 systems=""
 
 [ $# -eq 0 ] && Help && exit 1
 
-while [ $# -gt 0 ]; do
+while [ $# -gt 0 ]
+do
 	case "$1" in
-		-d|--deploy)
-			operations="$operations""deploy,"
-		;;
-		-h|--help)
-			Help "full" && exit 0
-		;;
-		-i|--install)
-			operations="$operations""install,"
-		;;
-		-p|--pull)
-			operations="$operations""pull,"
-		;;
-		-u|--update)
-			operations="$operations""update,"
-		;;
-		-x|--extra)
-			operations="$operations""extra,"
-		;;
-		[!-]*)
-			systems="$systems""$1,"
-		;;
-		*)
-			Help && exit 1
-		;;
+	-d|--deploy)
+		operations="$operations""deploy,"
+	;;
+	-h|--help)
+		Help "full" && exit 0
+	;;
+	-i|--install)
+		operations="$operations""install,"
+	;;
+	-p|--pull)
+		operations="$operations""pull,"
+	;;
+	-u|--update)
+		operations="$operations""update,"
+	;;
+	-x|--extra)
+		operations="$operations""extra,"
+	;;
+	[!-]*)
+		systems="$systems""$1,"
+	;;
+	*)
+		Help && exit 1
+	;;
 	esac
 	shift
 done
 
 [ "$systems" = "" ] && systems="DOTFILER-DEFAULT-SYSTEM"
 
-while [ "$operations" != "" ]; do
+while [ "$operations" != "" ]
+do
 	local_systems="$systems"
 
 	current_op="$(Front "$operations")"
 	operations="$(Pop "$operations")"
 
-	while [ "$local_systems" != "" ]; do
+	while [ "$local_systems" != "" ]
+	do
 		current_sys="$(Front "$local_systems")"
 		local_systems="$(Pop "$local_systems")"
 
 		case "$current_op" in
-			deploy)
-				Deploy "$current_sys"
-			;;
-			install)
-				Install "$current_sys"
-			;;
-			pull)
-				Pull "$current_sys"
-			;;
-			update)
-				Update "$current_sys"
-			;;
-			extra)
-				Extra "$current_sys"
-			;;
-			*)
-				printf "\033[1;31m==> Illegal operation \"%s\". Aborting...\033[0m\n" \
-				       "$current_op"
-				exit 1
+		deploy)
+			Deploy "$current_sys"
+		;;
+		install)
+			Install "$current_sys"
+		;;
+		pull)
+			Pull "$current_sys"
+		;;
+		update)
+			Update "$current_sys"
+		;;
+		extra)
+			Extra "$current_sys"
+		;;
+		*)
+			printf "\033[1;31m==> Illegal operation \"%s\". Aborting...\033[0m\n" \
+				"$current_op"
+			exit 1
+		;;
 		esac
 	done
 done
