@@ -82,28 +82,56 @@ snippet foot
 $2\footnote{$1}
 endsnippet
 
-snippet it
-\textit{$1}
+snippet forall
+\forall $1
+endsnippet
+
+snippet inC
+\in\mathbb{C} $1
+endsnippet
+
+snippet inN
+\in\mathbb{N} $1
+endsnippet
+
+snippet inQ
+\in\mathbb{Q} $1
+endsnippet
+
+snippet inR
+\in\mathbb{R} $1
+endsnippet
+
+snippet inZ
+\in\mathbb{Z} $1
 endsnippet
 
 snippet input
 \input{$1}
 endsnippet
 
+snippet it
+\textit{$1}
+endsnippet
+
 snippet item
-\item $1
+\item
+	$1
 endsnippet
 
 snippet item$
-\item \$$1\$$2
+\item
+	\$$1\$$2
 endsnippet
 
 snippet itembf
-\item\textbf{$1:}$2
+\item\textbf{$1:}
+	$2
 endsnippet
 
 snippet itemtt
-\item\texttt{${1:Code fragment}}\textbf{:}$2
+\item\texttt{${1:Code fragment}}\textbf{:}
+	$2
 endsnippet
 
 snippet itemize
@@ -116,6 +144,10 @@ snippet list
 \begin{lstlisting}[language=$1]
 $2
 \end{lstlisting}
+endsnippet
+
+snippet log
+\log($1)$2
 endsnippet
 
 snippet part

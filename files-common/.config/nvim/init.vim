@@ -5,7 +5,7 @@ endif
 
 autocmd BufWritePre * silent! undojoin | %s/\s\+$//e
 filetype plugin indent on " Required by plugins
-let mapleader = ","
+let mapleader = " "
 " }}}1
 
 " Custom filetypes {{{1
@@ -45,6 +45,7 @@ set tabstop=3
 
 " Other {{{2
 set foldmethod=marker
+set guicursor=
 set mouse=nvi
 set showcmd
 "set t_ut="" " Redraw the whole window every time there's an update
@@ -53,6 +54,8 @@ set showcmd
 
 " Plugins {{{1
 call plug#begin('~/.vim/plugged')
+
+" Plug 'aaronbieber/vim-quicktask'
 
 " Airline {{{2
 Plug 'vim-airline/vim-airline'
@@ -111,10 +114,6 @@ Plug 'tpope/vim-commentary'
 Plug 'junegunn/vim-easy-align'
 xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
-" }}}2
-
-" FauxClip {{{2
-Plug 'Jorengarenar/fauxClip'
 " }}}2
 
 " Fugitive {{{2
