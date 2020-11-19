@@ -1,8 +1,8 @@
-file:///home/groctel/.newsboat/rss_files/andromeda
-file:///home/groctel/.newsboat/rss_files/archlinux
+https://sourceforge.net/projects/xiaomi-andromeda/rss?path=/
+https://www.archlinux.org/feeds/news/
 
-file:///home/groctel/.newsboat/rss_files/cortex         "~Podcast: Cortex"
-file:///home/groctel/.newsboat/rss_files/hello_internet "~Podcast: Hello Internet"
+https://www.relay.fm/cortex/feed               "~Podcast: Cortex"
+http://www.hellointernet.fm/podcast?format=rss "~Podcast: Hello Internet"
 
 https://www.youtube.com/feeds/videos.xml?channel_id=UCYO_jab_esuFRV4b17AJtAw "~YouTube: 3Blue1Brown"
 https://www.youtube.com/feeds/videos.xml?channel_id=UCY3A_5R_m3PXCn5XDhvBBsg "~YouTube: Adam Millard - The Architect of Games"

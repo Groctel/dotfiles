@@ -42,6 +42,6 @@ highlight article ":.*\\(link\\)$" cyan default
 highlight article ":.*\\(image\\)$" blue default
 highlight article ":.*\\(embedded flash\\)$" magenta default
 
-macro m set browser "setsid -f mpv" ; open-in-browser ; set browser "firefox %u"
+macro m set browser "mpv" ; open-in-browser ; set browser "firefox %u"
 macro y set browser "youtube-dl -f bestvideo+bestaudio -o '~/Videos/YouTube/%(title)s.%(ext)s'" ; open-in-browser ; set browser linkhandler
 macro c set browser "~/.newsboat/clipboard-append.sh %u" ; open-in-browser ; set browser "firefox %u"
