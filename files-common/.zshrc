@@ -1,5 +1,8 @@
 set RANGER_LOAD_DEFAULT_RC=FALSE
 
+PATH="$PATH:$(ruby -e 'puts Gem.user_dir')/bin"
+PATH="$PATH:$HOME/.local/bin"
+
 # ANTIGEN SETTINGS
 
 source ~/.antigen.zsh
@@ -24,9 +27,7 @@ antigen theme denysdovhan/spaceship-prompt
 
 antigen apply
 
-# CUSTOM ALIASES
-
-# Zip arguments
+# Custom program settings
 alias ziptelegram="zip -9rv -s 1500m"
 
 # Misc

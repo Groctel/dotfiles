@@ -1,10 +1,13 @@
-# Groctel's dotfiles
+Groctel's dotfiles
+==================
 
 **Here are my dotfiles.
 They are files made out of text on a directory tree with nothing.
-Add them to your system if you want, I couldn't care less.** *Ron Swanson*
+Add them to your system if you want, I couldn't care less.**
+*Ron Swanson*
 
-## Dotfiles manager
+Dotfiles manager
+----------------
 
 I'm using [Dotfiler](https://github.com/Groctel/dotfiles-manager), my own dotfiles manager.
 It can be updated to the latest version with this command:
@@ -13,8 +16,7 @@ It can be updated to the latest version with this command:
 curl -fLo dotfiler.sh https://raw.githubusercontent.com/Groctel/dotfiles-manager/main/dotfiler.sh
 ```
 
-# Screenshots
+Legacy versions
+---------------
 
-![](https://raw.githubusercontent.com/Groctel/Groctel/main/images/screenshots/dotfiles-wallpaper.png)
-
-![](https://raw.githubusercontent.com/Groctel/Groctel/main/images/screenshots/dotfiles-screens.png)
+- **Latest i3wm commit:** [`5ec02ca5806d57a442b87d681962112f8b255881`](5ec02ca5806d57a442b87d681962112f8b255881)

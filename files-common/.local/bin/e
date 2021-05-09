@@ -1,35 +1,53 @@
 #!/bin/sh
 
 explorer="ranger"
-path=""
 
-path="$(echo "$1" | tr '[:upper:]' '[:lower:]')"
+path="$1"
 
-case "$path" in
-d|doc)
-	path="$HOME/Documents"
-;;
-dw|down)
-	path="$HOME/Downloads"
-;;
-m|mus)
-	path="$HOME/Music"
-;;
-p|pic)
-	path="$HOME/Pictures"
-;;
-r|rep)
-	path="$HOME/Documents/Repositorios"
-;;
-t|tel)
-	path="$HOME/Downloads/Telegram Desktop/"
-;;
-ui)
-	path="$HOME/Documents/UGR/ugr-informatica"
-;;
-v|vid)
-	path="$HOME/Videos"
-;;
-esac
+! [ -d "$path" ] &&
+{
+	path="$(echo "$1" | tr '[:upper:]' '[:lower:]')"
+
+	case "$path" in
+	aur)
+		path="$HOME/Documents/AUR"
+	;;
+	conf)
+		path="$HOME/.config"
+	;;
+	cube)
+		path="$HOME/Documents/Programación/cgpn/"
+	;;
+	d|doc)
+		path="$HOME/Documents"
+	;;
+	dw|down)
+		path="$HOME/Downloads"
+	;;
+	lab)
+		path="$HOME/Documents/Laboral"
+	;;
+	m|mus)
+		path="$HOME/Music"
+	;;
+	p|pic)
+		path="$HOME/Pictures"
+	;;
+	pr|prog)
+		path="$HOME/Documents/Programación"
+	;;
+	t|tel)
+		path="$HOME/Downloads/Telegram Desktop"
+	;;
+	ui)
+		path="$HOME/Documents/UGR/ugr-informatica"
+	;;
+	v|vid)
+		path="$HOME/Videos"
+	;;
+	vim)
+		path="$HOME/.config/nvim"
+	esac
+}
 
 $explorer "$path"

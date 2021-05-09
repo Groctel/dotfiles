@@ -1,39 +1,39 @@
 #!/bin/sh
 
-editor="vim"
-file=""
+editor="nvim"
+file="$0"
 
-conf_file="$(echo "$1" | tr '[:upper:]' '[:lower:]')"
+[ $# != 0 ] &&
+{
+	conf_file="$(echo "$1" | tr '[:upper:]' '[:lower:]')"
 
-case "$conf_file" in
-entr)
-	file="$HOME/.config/scripts/init/entr.sh"
-;;
-i3)
-	file="$HOME/.config/i3/config"
-;;
-kitty)
-	file="$HOME/.config/kitty/kitty.conf"
-;;
-ranger)
-	file="$HOME/.config/ranger/rc.conf"
-;;
-mime)
-	file="$HOME/.config/mimeapps.list"
-;;
-rofi)
-	file="$HOME/.config/rofi/config.rasi"
-;;
-vim)
-	file="$HOME/.vim/vimrc"
-;;
-zsh)
-	file="$HOME/.zshrc"
-;;
-*)
-	printf "\033[1;31mFile \"%s\" not registered.\033[0m\n" "$conf_file"
-	exit 1
-;;
-esac
+	case "$conf_file" in
+	e)
+		file="$HOME/.local/bin/e"
+	;;
+	kitty)
+		file="$HOME/.config/kitty/kitty.conf"
+	;;
+	ranger)
+		file="$HOME/.config/ranger/rc.conf"
+	;;
+	newsboat)
+		file="$HOME/.config/newsboat/urls"
+	;;
+	nvim|vim)
+		file="$HOME/.config/nvim/init.vim"
+	;;
+	rc)
+		file="$0"
+	;;
+	zsh)
+		file="$HOME/.zshrc"
+	;;
+	*)
+		printf "\033[1;31mFile \"%s\" not registered.\033[0m\n" "$conf_file"
+		exit 1
+	;;
+	esac
+}
 
 $editor "$file"
