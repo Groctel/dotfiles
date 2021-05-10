@@ -21,6 +21,9 @@ path="$1"
 	d|doc)
 		path="$HOME/Documents"
 	;;
+	dot)
+		path="$HOME/Documents/Personal/dotfiles"
+	;;
 	dw|down)
 		path="$HOME/Downloads"
 	;;
