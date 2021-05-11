@@ -1,6 +1,7 @@
 .config/kitty/*
 .config/nvim/coc-settings.json
 .config/nvim/init.vim
+.config/nvim/lua/*
 .local/bin/e
 .local/bin/rc
 .zshrc
