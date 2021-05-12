@@ -65,16 +65,17 @@ call plug#begin('~/.config/nvim/plugged')
 	" let g:asynctasks_term_pos = "floaterm_reuse"
 " Plug 'voldikss/vim-floaterm'
 
-" Plug 'neovim/nvim-lspconfig'
+Plug 'neovim/nvim-lspconfig'
 " Plug 'nvim-lua/completion-nvim'
-	" set completeopt=menuone,noinsert,noselect
-" Plug 'hrsh7th/nvim-compe'
-" Plug 'onsails/lspkind-nvim'
-" Plug 'nvim-treesitter/nvim-treesitter-textobjects'
+" 	set completeopt=menuone,noinsert,noselect
+Plug 'hrsh7th/nvim-compe'
+Plug 'onsails/lspkind-nvim'
+Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 
 " Default settings plugins {{{
 Plug 'akinsho/nvim-bufferline.lua'
 Plug 'glepnir/galaxyline.nvim'
+" Plug 'hoob3rt/lualine.nvim'
 Plug 'junegunn/vim-plug'
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'majutsushi/tagbar'
@@ -272,25 +273,21 @@ Plug 'mbbill/undotree' " {{{2
 	let g:undotree_TreeNodeShape      = '◯'
 	let g:undotree_WindowLayout       = 2
 " }}}2
-Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'} " {{{2
-	Plug 'Maxattax97/coc-ccls',           {'do': 'yarn install --frozen-lockfile'}
-	Plug 'fannheyward/coc-marketplace',   {'do': 'yarn install --frozen-lockfile'}
-	Plug 'fannheyward/coc-pyright',       {'do': 'yarn install --frozen-lockfile'}
-	Plug 'fannheyward/coc-rust-analyzer', {'do': 'yarn install --frozen-lockfile'}
-	Plug 'iamcco/coc-project',            {'do': 'yarn install --frozen-lockfile'}
-	Plug 'iamcco/coc-vimlsp',             {'do': 'yarn install --frozen-lockfile'}
-	Plug 'josa42/coc-lua',                {'do': 'yarn install --frozen-lockfile'}
-	Plug 'josa42/coc-sh',                 {'do': 'yarn install --frozen-lockfile'}
-	Plug 'marlonfan/coc-phpls',           {'do': 'yarn install --frozen-lockfile'}
-	Plug 'neoclide/coc-css' ,             {'do': 'yarn install --frozen-lockfile'}
-	Plug 'neoclide/coc-eslint',           {'do': 'yarn install --frozen-lockfile'}
-	Plug 'neoclide/coc-java',             {'do': 'yarn install --frozen-lockfile'}
-	Plug 'neoclide/coc-json',             {'do': 'yarn install --frozen-lockfile'}
-	Plug 'neoclide/coc-lists',            {'do': 'yarn install --frozen-lockfile'}
-	Plug 'neoclide/coc-solargraph',       {'do': 'yarn install --frozen-lockfile'}
-	Plug 'neoclide/coc-tsserver',         {'do': 'yarn install --frozen-lockfile'}
-	Plug 'neoclide/coc-vimtex',           {'do': 'yarn install --frozen-lockfile'}
-" }}}2
+" Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'} " {{{2
+" 	Plug 'Maxattax97/coc-ccls',           {'do': 'yarn install --frozen-lockfile'}
+" 	Plug 'fannheyward/coc-marketplace',   {'do': 'yarn install --frozen-lockfile'}
+" 	Plug 'fannheyward/coc-rust-analyzer', {'do': 'yarn install --frozen-lockfile'}
+" 	Plug 'iamcco/coc-project',            {'do': 'yarn install --frozen-lockfile'}
+" 	Plug 'josa42/coc-sh',                 {'do': 'yarn install --frozen-lockfile'}
+" 	Plug 'marlonfan/coc-phpls',           {'do': 'yarn install --frozen-lockfile'}
+" 	Plug 'neoclide/coc-css' ,             {'do': 'yarn install --frozen-lockfile'}
+" 	Plug 'neoclide/coc-eslint',           {'do': 'yarn install --frozen-lockfile'}
+" 	Plug 'neoclide/coc-java',             {'do': 'yarn install --frozen-lockfile'}
+" 	Plug 'neoclide/coc-json',             {'do': 'yarn install --frozen-lockfile'}
+" 	Plug 'neoclide/coc-lists',            {'do': 'yarn install --frozen-lockfile'}
+" 	Plug 'neoclide/coc-solargraph',       {'do': 'yarn install --frozen-lockfile'}
+" 	Plug 'neoclide/coc-vimtex',           {'do': 'yarn install --frozen-lockfile'}
+" " }}}2
 Plug 'sirver/UltiSnips' " {{{2
 	let g:UltiSnipsExpandTrigger       = "<C-S>"
 	let g:UltiSnipsJumpForwardTrigger  = "<C-B>"
@@ -321,10 +318,9 @@ require('nvim-treesitter.configs').setup {
 		enable = true
 	},
 }
--- require('lspconfig').pyright.setup {
-	-- on_attach=require('completion').on_attach
--- }
--- require('lspconfig').tsserver.setup { }
+require('lspconfig').pyright.setup { }
+require('lspconfig').tsserver.setup { }
+require('lspconfig').vimls.setup { }
 EOF
 " }}}2
 " }}}1
@@ -414,3 +410,4 @@ highlight! CursorLineNr guibg=normal_bg
 
 set guifont=Fira\ Code:h15
 tnoremap <Esc><Esc> <C-\><C-n>
+

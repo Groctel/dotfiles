@@ -130,34 +130,6 @@ gls.left[8] = { Git = { -- {{{2
 	end,
 }}
 -- }}}2
-
-gls.left[9] = { DiagnosticError = { -- {{{2
-	icon      = ' ',
-	highlight = {colors.red,colors.bg},
-	provider  = 'DiagnosticError',
-}}
--- }}}2
-
-gls.left[10] = { DiagnosticWarn = { -- {{{2
-	highlight = {colors.yellow,colors.bg},
-	icon      = ' ',
-	provider  = 'DiagnosticWarn',
-}}
--- }}}2
-
-gls.left[11] = { DiagnosticHint = { -- {{{2
-	highlight = {colors.cyan,colors.bg},
-	icon      = ' ',
-	provider  = 'DiagnosticHint',
-}}
--- }}}2
-
-gls.left[12] = { DiagnosticInfo = { -- {{{2
-	highlight = {colors.blue,colors.bg},
-	icon      = ' ',
-	provider  = 'DiagnosticInfo',
-}}
--- }}}2
 -- }}}1
 
 -- Centered modules {{{1
@@ -169,12 +141,6 @@ gls.mid[0] = { Empty = {
 
 -- Right hand side modules {{{1
 gls.right[0] = { LspClient = { -- {{{2
-	condition = function ()
-		local tbl = {['dashboard'] = true, [''] = true}
-		if tbl[vim.bo.filetype] then return false end
-		return true
-	end,
-
 	highlight = {colors.fg, colors.bg_statusline, 'bold'},
 
 	provider = function ()
@@ -187,12 +153,76 @@ gls.right[0] = { LspClient = { -- {{{2
 		end
 
 		vim.api.nvim_command('hi GalaxyLspClient guifg='..mode_color[vim.fn.mode()])
-		return icon..active_lsp
+		return icon..active_lsp..' '
 	end,
 }}
 -- }}}2
 
-gls.right[1] = { LineSep = { -- {{{2
+gls.right[1] = { DiagnosticError = { -- {{{2
+	highlight = {colors.red, colors.bg_statusline, 'bold'},
+
+	provider = function ()
+		local icon = ' '
+		local count = vim.lsp.diagnostic.get_count(0, 'Error')
+
+		if count == 0 then
+			return
+		else
+			return icon..count..' '
+		end
+	end,
+}}
+-- }}}2
+
+gls.right[2] = { DiagnosticWarn = { -- {{{2
+	highlight = {colors.yellow, colors.bg_statusline, 'bold'},
+
+	provider = function ()
+		local icon = ' '
+		local count = vim.lsp.diagnostic.get_count(0, 'Warning')
+
+		if count == 0 then
+			return
+		else
+			return icon..count..' '
+		end
+	end,
+}}
+-- }}}2
+
+gls.right[3] = { DiagnosticHint = { -- {{{2
+	highlight = {colors.cyan, colors.bg_statusline, 'bold'},
+
+	provider = function ()
+		local icon = ' '
+		local count = vim.lsp.diagnostic.get_count(0, 'Hint')
+
+		if count == 0 then
+			return
+		else
+			return icon..count..' '
+		end
+	end,
+}}
+-- }}}2
+
+gls.right[4] = { DiagnosticInfo = { -- {{{2
+	highlight = {colors.blue, colors.bg_statusline, 'bold'},
+
+	provider = function ()
+		local icon = ' '
+		local count = vim.lsp.diagnostic.get_count(0, 'Info')
+
+		if count == 0 then
+			return
+		else
+			return icon..count..' '
+		end
+	end,
+}}
+-- }}}2
+
+gls.right[5] = { LineSep = { -- {{{2
 	highlight = {colors.bg_statusline, colors.bg_statusline},
 
 	provider = function ()
@@ -202,7 +232,7 @@ gls.right[1] = { LineSep = { -- {{{2
 }}
 -- }}}2
 
-gls.right[2] = { LineInfo = { -- {{{2
+gls.right[6] = { LineInfo = { -- {{{2
 	highlight = {colors.black, colors.bg_statusline, 'bold'},
 
 	provider = function ()
@@ -214,7 +244,7 @@ gls.right[2] = { LineInfo = { -- {{{2
 }}
 -- }}}2
 
-gls.right[3] = { Right = { -- {{{2
+gls.right[7] = { Right = { -- {{{2
 	highlight = {colors.blue, colors.bg_statusline},
 
 	provider = function ()
@@ -225,25 +255,84 @@ gls.right[3] = { Right = { -- {{{2
 -- }}}2
 -- }}}1
 
--- Short line modules {{{1
-gls.short_line_left[1] = { BufferType = { -- {{{2
-	highlight           = {colors.blue,colors.bg,'bold'},
-	provider            = 'FileTypeName',
-	separator           = ' ',
-	separator_highlight = {'NONE',colors.bg},
+-- Short line left hand side modules {{{1
+gls.short_line_left[0] = { Left = { -- {{{2
+	highlight = {colors.blue, colors.bg},
+
+	provider = function ()
+		vim.api.nvim_command('hi GalaxyLeft guifg='..mode_color[vim.fn.mode()])
+		return "█"
+	end,
 }}
 -- }}}2
 
-gls.short_line_left[2] = { SFileName = { -- {{{2
+gls.short_line_left[1] = { ModeNum = { -- {{{2
+	highlight = {colors.black, colors.bg, 'bold'},
+
+	provider = function ()
+		vim.api.nvim_command('hi GalaxyModeNum guibg='..mode_color[vim.fn.mode()])
+		return
+			mode_icon[vim.fn.mode()]..
+			num_icons[math.min(10, buffer.get_buffer_number())]
+	end,
+}}
+-- }}}2
+
+gls.short_line_left[2] = { BufSep = { -- {{{2
+	highlight = {colors.bg, colors.bg},
+
+	provider = function ()
+		vim.api.nvim_command("hi GalaxyBufSep guibg="..mode_color[vim.fn.mode()])
+		return "█"
+	end,
+}}
+-- }}}2
+
+gls.short_line_left[3] = { FileIcon = { -- {{{2
 	condition = condition.buffer_not_empty,
-	highlight = {colors.fg,colors.bg,'bold'},
-	provider  = 'SFileName',
+	highlight = {fileinfo.get_file_icon_color, colors.bg},
+	provider  = 'FileIcon',
 }}
 -- }}}2
 
-gls.short_line_right[1] = { BufferIcon = { -- {{{2
-	highlight = {colors.fg,colors.bg},
-	provider  = 'BufferIcon',
+gls.short_line_left[4] = { FileName = { -- {{{2
+	condition = condition.buffer_not_empty,
+	highlight = {colors.white, colors.bg, 'bold'},
+	provider  = 'FileName',
+}}
+-- }}}2
+-- }}}1
+
+-- Short line right hand side modules {{{1
+gls.short_line_right[1] = { LineSep = { -- {{{2
+	highlight = {colors.bg, colors.bg},
+
+	provider = function ()
+		vim.api.nvim_command('hi GalaxyLineSep guibg='..mode_color[vim.fn.mode()])
+		return " "
+	end,
+}}
+-- }}}2
+
+gls.short_line_right[2] = { LineInfo = { -- {{{2
+	highlight = {colors.black, colors.bg, 'bold'},
+
+	provider = function ()
+		local cursor = vim.api.nvim_win_get_cursor(0)
+
+		vim.api.nvim_command('hi GalaxyLineInfo guibg='..mode_color[vim.fn.mode()])
+		return '☰ '..cursor[1]..'/'..vim.api.nvim_buf_line_count(0)..':'..cursor[2]
+	end,
+}}
+-- }}}2
+
+gls.short_line_right[3] = { Right = { -- {{{2
+	highlight = {colors.blue, colors.bg},
+
+	provider = function ()
+		vim.api.nvim_command('hi GalaxyRight guifg='..mode_color[vim.fn.mode()])
+		return '█'
+	end,
 }}
 -- }}}2
 -- }}}1
