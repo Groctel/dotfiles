@@ -8,7 +8,7 @@ local fileinfo  = require('galaxyline.provider_fileinfo')
 local lsp       = require('galaxyline.provider_lsp')
 local vcs       = require('galaxyline.provider_vcs')
 
-gl.short_line_list = {'NvimTree', 'vista', 'dbui', 'packer'}
+gl.short_line_list = {'NvimTree', 'help', 'tagbar'}
 
 -- Maps {{{1
 local mode_color = { -- {{{2
@@ -211,7 +211,7 @@ gls.right[4] = { DiagnosticInfo = { -- {{{2
 
 	provider = function ()
 		local icon = ' '
-		local count = vim.lsp.diagnostic.get_count(0, 'Info')
+		local count = vim.lsp.diagnostic.get_count(0, 'Information')
 
 		if count == 0 then
 			return

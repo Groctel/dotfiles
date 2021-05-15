@@ -2,6 +2,7 @@
 .config/nvim/coc-settings.json
 .config/nvim/init.vim
 .config/nvim/lua/*
+.config/nvim/viml/*
 .local/bin/e
 .local/bin/rc
 .zshrc
