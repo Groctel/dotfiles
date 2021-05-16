@@ -1,5 +1,5 @@
 .config/kitty/*
-.config/nvim/coc-settings.json
+.config/nvim/UltiSnips/*
 .config/nvim/init.vim
 .config/nvim/lua/*
 .config/nvim/viml/*
