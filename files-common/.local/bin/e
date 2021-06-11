@@ -50,6 +50,10 @@ path="$1"
 	;;
 	vim)
 		path="$HOME/.config/nvim"
+	;;
+	yt)
+		path="$HOME/Documents/Proyectos/YouTube"
+	;;
 	esac
 }
 
