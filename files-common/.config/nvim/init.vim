@@ -38,7 +38,7 @@ command! MDTexTt execute "%s/`\\([^`]\\+\\)`/\\\\texttt{\\1}/g"
 
 augroup Automations
 	autocmd!
-	autocmd BufWritePre  * silent! undojoin | %s/\s\+$//e
+	autocmd BufWritePre * silent! undojoin | %s/\s\+$//e
 	autocmd FileType fugitive,fugitiveblame,git setlocal colorcolumn=
 	" autocmd FileType help set nowrap nolinebreak
 augroup END
@@ -61,8 +61,11 @@ highlight! CursorLine   guibg=normal_bg
 highlight! CursorLineNr guibg=normal_bg
 
 " Mappings
-nnoremap Q <cmd>close<cr>
+nnoremap Q <nop>
 nnoremap Y y$
 nnoremap <C-n> <cmd>bnext<cr>
 nnoremap <C-p> <cmd>bprev<cr>
 tnoremap <Esc><Esc> <C-\><C-n>
+
+" Neovide options
+set guifont=Fira\ Code\ Retina:h16.2

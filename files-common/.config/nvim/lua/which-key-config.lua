@@ -5,13 +5,22 @@ wk.setup {
 }
 
 local neonln = '~/.config/nvim/lua/neonline.lua'
+local plugin = '~/.config/nvim/viml/plugins.vim'
 local splash = '~/.config/nvim/viml/dashboard-splash-strings.txt'
 local wkconf = '~/.config/nvim/lua/which-key-config.lua'
+
+function compile_command (system)
+	local systems = {
+		['latex'] = 'pdflatex',
+	}
+	vim.fn.execute('!'..systems[system]..' '..vim.fn.execute('echo bufname()'):sub(2))
+end
 
 wk.register({
 	b = {
 		name = '+Buffer',
 		a = {':badd ', 'Add buffer', silent=false},
+		d = {'<cmd>bdel<cr>', 'Delete buffer'},
 		c = {'<cmd>bwipe<cr>', 'Close buffer'},
 		n = {'<cmd>bnext<cr>', 'Next buffer'},
 		p = {'<cmd>bprev<cr>', 'Previous buffer'},
@@ -21,6 +30,7 @@ wk.register({
 
 	c = {
 		name = '+Compilation',
+		l = {'<cmd>lua compile_command("latex")<cr>', 'LaTeX'},
 	},
 
 	f = {
@@ -31,6 +41,7 @@ wk.register({
 		[' '] = {
 			name = '+Dotfiles',
 			n = {'<cmd>badd '..neonln..'| blast<cr>', 'Open neonline settings'},
+			p = {'<cmd>badd '..plugin..'| blast<cr>', 'Open plugins settings'},
 			s = {'<cmd>badd '..splash..'| blast<cr>', 'Open splash strings file'},
 			S = {'<cmd>source $MYVIMRC | blast<cr>', 'Source vimrc'},
 			w = {'<cmd>badd '..wkconf..'| blast<cr>', 'Open which-key settings'},
@@ -128,7 +139,7 @@ wk.register({
 		r = {'<C-W>r', 'Rotate windows down'},
 		R = {'<C-W>R', 'Rotate windows up'},
 		s = {'<C-W>s', 'Split horizontally'},
-		v = {'<C-W>s', 'Split vertically'},
+		v = {'<C-W>v', 'Split vertically'},
 		w = {'<C-W>w', 'Next window'},
 	},
 

@@ -134,7 +134,7 @@ gls.left[8] = { Git = { -- {{{2
 
 -- Centered modules {{{1
 gls.mid[0] = { Empty = {
-	highlight = {colors.fg, colors.bg_statusline},
+	highlight = {colors.bg_statusline, colors.bg_statusline},
 	provider  = function () return end,
 }}
 -- }}}1
