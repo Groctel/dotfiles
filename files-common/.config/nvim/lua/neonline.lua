@@ -126,7 +126,9 @@ gls.left[8] = { Git = { -- {{{2
 
 	provider = function ()
 		vim.api.nvim_command('hi GalaxyGit guifg='..mode_color[vim.fn.mode()])
-		return ' '..vcs.get_git_branch()..' '
+		local branch = vcs.get_git_branch()
+		if (branch == nil) then branch = '???' end
+		return ' '..branch..' '
 	end,
 }}
 -- }}}2
