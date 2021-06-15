@@ -5,10 +5,9 @@ PATH="$PATH:$HOME/.local/bin"
 
 # ANTIGEN SETTINGS
 
-source ~/.antigen.zsh
+source /usr/share/zsh/share/antigen.zsh
 
 antigen use oh-my-zsh
-
 antigen bundle adb
 antigen bundle alias-finder
 antigen bundle battery
@@ -21,9 +20,6 @@ antigen bundle git
 antigen bundle ripgrep
 antigen bundle zsh-users/zsh-syntax-highlighting
 antigen bundle zsh-users/zsh-autosuggestions
-
-# antigen theme denysdovhan/spaceship-prompt
-
 antigen apply
 
 alias l="ls -lahX --group-directories-first"

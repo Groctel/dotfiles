@@ -1,1 +1,0 @@
-curl -fLo $HOME/.antigen.zsh git.io/antigen
