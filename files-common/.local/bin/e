@@ -22,7 +22,7 @@ path="$1"
 		path="$HOME/Documents"
 	;;
 	dot)
-		path="$HOME/Documents/Personal/dotfiles"
+		path="$HOME/Documents/Personal/git-dotfiles"
 	;;
 	dw|down)
 		path="$HOME/Downloads"
