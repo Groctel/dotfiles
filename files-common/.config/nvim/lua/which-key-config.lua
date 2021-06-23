@@ -4,6 +4,7 @@ wk.setup {
 	triggers = "<leader>"
 }
 
+local luaplg = '~/.config/nvim/lua/plugins.lua'
 local neonln = '~/.config/nvim/lua/neonline.lua'
 local plugin = '~/.config/nvim/viml/plugins.vim'
 local splash = '~/.config/nvim/viml/dashboard-splash-strings.txt'
@@ -17,6 +18,12 @@ function compile_command (system)
 end
 
 wk.register({
+	a = {
+		name = '+ALE',
+		d = {'<cmd>ALEDetail<cr>', 'Marker detail'},
+		i = {'<cmd>ALEInfo<cr>', 'Linter info'},
+	},
+
 	b = {
 		name = '+Buffer',
 		a = {':badd ', 'Add buffer', silent=false},
@@ -40,6 +47,7 @@ wk.register({
 		t = {'<cmd>NvimTreeToggle<cr>', 'Toggle file tree'},
 		[' '] = {
 			name = '+Dotfiles',
+			l = {'<cmd>badd '..luaplg..'| blast<cr>', 'Open lua plugins settings'},
 			n = {'<cmd>badd '..neonln..'| blast<cr>', 'Open neonline settings'},
 			p = {'<cmd>badd '..plugin..'| blast<cr>', 'Open plugins settings'},
 			s = {'<cmd>badd '..splash..'| blast<cr>', 'Open splash strings file'},
@@ -76,6 +84,15 @@ wk.register({
 		name = '+Help',
 		h = {':help ', 'Horizontal help', silent=false},
 		v = {':vert help ', 'Vertical help', silent=false},
+	},
+
+	l = {
+		name = '+LSP',
+		i = {'<cmd>LspInfo<cr>', 'Info'},
+		r = {'<cmd>LspRestart<cr>', 'Restart'},
+		s = {'<cmd>LspStart<cr>', 'Start'},
+		S = {'<cmd>LspStop<cr>', 'Stop'},
+		t = {'<cmd>TroubleToggle<cr>', 'Trouble'},
 	},
 
 	p = {
@@ -127,6 +144,11 @@ wk.register({
 		T = {'<cmd>FloatermToggle<cr>', 'Open floating terminal'},
 		h = {'<cmd>split | term<cr>', 'Split to terminal'},
 		v = {'<cmd>vsplit | term<cr>', 'Vsplit to terminal'},
+	},
+
+	v = {
+		name = '+Vim/Neovim',
+		c = {'<cmd>checkhealth<cr>', 'Check nvim health'},
 	},
 
 	w = {

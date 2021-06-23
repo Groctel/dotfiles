@@ -6,11 +6,10 @@ require('bufferline').setup
 
 require('colorizer').setup()
 
-require('lspconfig').bashls.setup{}
-require('lspconfig').ccls.setup{ root_dir = dirname }
-require('lspconfig').cssls.setup{}
 require('lspconfig').intelephense.setup{}
-require('lspconfig').jsonls.setup{}
+require('lspconfig').jsonls.setup{
+	cmd = { "vscode-json-languageserver", "--stdio" }
+}
 require('lspconfig').pyright.setup{}
 require('lspconfig').solargraph.setup{}
 require('lspconfig').texlab.setup{}
@@ -18,7 +17,6 @@ require('lspconfig').tsserver.setup{}
 require('lspconfig').vimls.setup{}
 
 require('neogit').setup{}
-
 require('neonline')
 
 require('nvim-treesitter.configs').setup
