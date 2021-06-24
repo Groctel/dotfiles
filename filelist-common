@@ -1,4 +1,5 @@
 .config/kitty/*
+.config/newsboat/*
 .config/nvim/UltiSnips/*
 .config/nvim/init.vim
 .config/nvim/lua/*
