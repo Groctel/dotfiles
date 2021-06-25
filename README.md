@@ -6,6 +6,12 @@ They are files made out of text on a directory tree with nothing.
 Add them to your system if you want, I couldn't care less.**
 *Ron Swanson*
 
+System requirements
+-------------------
+
+These dotfiles come from an [Arch Linux](https://archlinux.org/) system and require [`yay`](
+https://aur.archlinux.org/packages/yay/) to install all the `laptop` packages, since many come from the AUR.
+
 Dotfiles manager
 ----------------
 
