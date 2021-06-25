@@ -4,6 +4,7 @@
 .config/nvim/init.vim
 .config/nvim/lua/*
 .config/nvim/viml/*
+.config/ranger/*
 .local/bin/e
 .local/bin/rc
 .zshrc
