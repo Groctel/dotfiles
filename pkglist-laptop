@@ -26,6 +26,7 @@ firefox-nightly
 flex
 gamemode
 gcc
+gimp
 git
 groff
 gvfs
@@ -51,6 +52,7 @@ kmenuedit
 kscreen
 kscreenlocker
 ksshaskpass
+ksysguard
 ksystemstats
 kwallet-pam
 kwayland-integration
@@ -103,6 +105,7 @@ otf-symbola
 oxygen
 pacman-contrib
 pandoc-bin
+paru
 patch
 pavucontrol
 pipewire-alsa
@@ -126,6 +129,7 @@ plasma-vault
 plasma-wayland-session
 plasma-workspace
 plasma-workspace-wallpapers
+plasma5-applets-thermal-monitor
 polkit-kde-agent
 powerdevil
 pulseeffects
@@ -137,6 +141,7 @@ ranger
 ruby
 ruby-neovim
 ruby-solargraph
+rust
 sddm
 sddm-kcm
 spectacle
@@ -168,4 +173,5 @@ wine-staging
 xdg-desktop-portal-kde
 yarn
 yay
+zip
 zsh
