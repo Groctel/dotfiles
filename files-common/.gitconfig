@@ -1,0 +1,7 @@
+[pull]
+	rebase = false
+[user]
+	email = git@taxorubio.com
+	name = Groctel
+[init]
+	defaultBranch = main

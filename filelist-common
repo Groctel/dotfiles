@@ -5,6 +5,7 @@
 .config/nvim/lua/*
 .config/nvim/viml/*
 .config/ranger/*
+.gitconfig
 .local/bin/e
 .local/bin/rc
 .zshrc

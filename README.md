@@ -19,7 +19,7 @@ I'm using [Dotfiler](https://github.com/Groctel/dotfiles-manager), my own dotfil
 It can be updated to the latest version with this command:
 
 ```sh
-curl -fLo dotfiler.sh https://raw.githubusercontent.com/Groctel/dotfiles-manager/main/dotfiler.sh
+curl -fLo dotfiler.sh https://gitlab.com/Groctel/dotfiles-manager/-/raw/main/dotfiler.sh
 ```
 
 Legacy versions
