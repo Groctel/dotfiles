@@ -95,6 +95,12 @@ wk.register({
 		t = {'<cmd>TroubleToggle<cr>', 'Trouble'},
 	},
 
+	o = {
+		name = '+Org Mode',
+		a = {'<cmd>lua require("orgmode").action("agenda.prompt")<CR>', 'Agenda'},
+		c = {'<cmd>lua require("orgmode").action("capture.prompt")<CR>', 'Capture'},
+	},
+
 	p = {
 		name = '+Plugins',
 		g = {'<cmd>Goyo<cr>', 'Goyo'},

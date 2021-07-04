@@ -13,6 +13,7 @@ call plug#begin('~/.config/nvim/plugged')
 	" Plug 'nvim-lua/completion-nvim'
 		" set completeopt=menuone,noinsert,noselect
 
+	Plug 'kristijanhusak/orgmode.nvim'
 	Plug 'TimUntersberger/neogit'
 	Plug 'akinsho/nvim-bufferline.lua'
 	Plug 'folke/trouble.nvim'
@@ -45,23 +46,15 @@ call plug#begin('~/.config/nvim/plugged')
 
 	Plug 'dense-analysis/ale'
 		let g:ale_linters = {
-			\ 'c'    : ['gcc'],
-			\ 'cpp'  : ['g++'],
-			\ 'java' : ['javac'],
-			\ 'javascript' : ['eslint'],
+			\ 'c': [],
+			\ 'cpp': [],
+			\ 'java': [],
+			\ 'javascript': ['eslint'],
 			\ 'ruby': []
 		\}
 		let g:ale_change_sign_column_color = 1
 		let g:ale_sign_error               = ' ✘'
 		let g:ale_sign_warning             = ' ●'
-
-		let g:ale_c_cc_options             = '-std=c18 -Wall -Wextra -Wpedantic -Wfloat-equal'
-		let g:ale_cpp_cc_options           = '-std=c++17 -Wall -Wextra -Wpedantic -Wfloat-equal -I./'
-		let g:ale_c_parse_makefile         = 1
-		let g:ale_c_parse_compile_commands = 0
-
-		let g:ale_haskell_ghc_options        = '-dynamic'
-		let g:airline#extensions#ale#enabled = 0
 
 	Plug 'folke/tokyonight.nvim'
 		let g:tokyonight_style = "night"
