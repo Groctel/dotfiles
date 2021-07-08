@@ -13,31 +13,15 @@ call plug#begin('~/.config/nvim/plugged')
 	" Plug 'nvim-lua/completion-nvim'
 		" set completeopt=menuone,noinsert,noselect
 
-	Plug 'kristijanhusak/orgmode.nvim'
-	Plug 'TimUntersberger/neogit'
-	Plug 'akinsho/nvim-bufferline.lua'
-	Plug 'folke/trouble.nvim'
-	Plug 'folke/which-key.nvim'
-	Plug 'glepnir/galaxyline.nvim'
-	Plug 'hrsh7th/nvim-compe'
 	Plug 'junegunn/vim-plug'
-	Plug 'kyazdani42/nvim-tree.lua'
-	Plug 'kyazdani42/nvim-web-devicons'
 	Plug 'machakann/vim-highlightedyank'
 	Plug 'majutsushi/tagbar'
 	Plug 'neovim/nvim-lspconfig'
 	Plug 'norcalli/nvim-colorizer.lua'
-	Plug 'nvim-lua/plenary.nvim'
-	Plug 'nvim-lua/popup.nvim'
-	Plug 'nvim-telescope/telescope.nvim'
-	Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-	Plug 'nvim-treesitter/nvim-treesitter-textobjects'
-	Plug 'onsails/lspkind-nvim'
 	Plug 'tpope/vim-fugitive'
 	Plug 'tpope/vim-repeat'
 	Plug 'tpope/vim-rhubarb'
 	Plug 'tpope/vim-surround'
-	Plug 'tversteeg/registers.nvim'
 	Plug 'voldikss/vim-floaterm'
 
 	Plug 'andweeb/presence.nvim'
@@ -149,11 +133,32 @@ call plug#begin('~/.config/nvim/plugged')
 		let g:undotree_TreeNodeShape      = '◯'
 		let g:undotree_WindowLayout       = 2
 
+	Plug 'romgrk/barbar.nvim'
+		let bufferline = get(g:, 'bufferline', {})
+		let g:bufferline.no_name_title = '[Empty buffer]'
+
 	Plug 'sirver/UltiSnips'
 		let g:UltiSnipsExpandTrigger       = "<Tab>"
 		let g:UltiSnipsJumpForwardTrigger  = "<C-B>"
 		let g:UltiSnipsJumpBackwardTrigger = "<C-Z>"
 		let g:UltiSnipsEditSplit           = "vertical"
+
+	" Lua plugins
+	Plug 'TimUntersberger/neogit'
+	Plug 'folke/trouble.nvim'
+	Plug 'folke/which-key.nvim'
+	Plug 'glepnir/galaxyline.nvim'
+	Plug 'hrsh7th/nvim-compe'
+	Plug 'kristijanhusak/orgmode.nvim'
+	Plug 'kyazdani42/nvim-tree.lua'
+	Plug 'kyazdani42/nvim-web-devicons'
+	Plug 'nvim-lua/plenary.nvim'
+	Plug 'nvim-lua/popup.nvim'
+	Plug 'nvim-telescope/telescope.nvim'
+	Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+	Plug 'nvim-treesitter/nvim-treesitter-textobjects'
+	Plug 'onsails/lspkind-nvim'
+	Plug 'tversteeg/registers.nvim'
 call plug#end()
 
 lua require('plugins')

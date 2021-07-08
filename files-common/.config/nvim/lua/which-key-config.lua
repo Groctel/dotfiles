@@ -1,7 +1,7 @@
-local wk = require("which-key")
+local wk = require('which-key')
 
 wk.setup {
-	triggers = "<leader>"
+	triggers = '<leader>'
 }
 
 local luaplg = '~/.config/nvim/lua/plugins.lua'
@@ -17,7 +17,7 @@ function compile_command (system)
 	vim.fn.execute('!'..systems[system]..' '..vim.fn.execute('echo bufname()'):sub(2))
 end
 
-wk.register({
+key_tree = {
 	a = {
 		name = '+ALE',
 		d = {'<cmd>ALEDetail<cr>', 'Marker detail'},
@@ -28,11 +28,16 @@ wk.register({
 		name = '+Buffer',
 		a = {':badd ', 'Add buffer', silent=false},
 		d = {'<cmd>bdel<cr>', 'Delete buffer'},
-		c = {'<cmd>bwipe<cr>', 'Close buffer'},
-		n = {'<cmd>bnext<cr>', 'Next buffer'},
-		p = {'<cmd>bprev<cr>', 'Previous buffer'},
+		-- c = {'<cmd>bwipe<cr>', 'Close buffer'},
+		c = {'<cmd>BufferClose<cr>', 'Close buffer'},
+		-- n = {'<cmd>bnext<cr>', 'Next buffer'},
+		-- p = {'<cmd>bprev<cr>', 'Previous buffer'},
+		n = {'<cmd>BufferNext<cr>', 'Next buffer'},
+		p = {'<cmd>BufferPrevious<cr>', 'Previous buffer'},
 		w = {'<cmd>w<cr>', 'Write current buffer'},
 		W = {'<cmd>wa<cr>', 'Write all buffers'},
+		['>'] = {'<cmd>BufferMoveNext<cr>', 'Move buffer to the right'},
+		['<'] = {'<cmd>BufferMovePrevious<cr>', 'Move buffer to the left'},
 	},
 
 	c = {
@@ -136,12 +141,12 @@ wk.register({
 
 	t = {
 		name = '+Tabs',
-		c = {"<cmd>tabclose<cr>", "Close tab"},
-		f = {"<cmd>tabfirst<cr>", "First tab"},
-		l = {"<cmd>tablast<cr>", "Last tab"},
-		n = {"<cmd>tabnext<cr>", "Next tab"},
-		p = {"<cmd>tabprevious<cr>", "Previous tab"},
-		t = {"<cmd>tabnew<cr>", "New Tab"},
+		c = {'<cmd>tabclose<cr>', 'Close tab'},
+		f = {'<cmd>tabfirst<cr>', 'First tab'},
+		l = {'<cmd>tablast<cr>', 'Last tab'},
+		n = {'<cmd>tabnext<cr>', 'Next tab'},
+		p = {'<cmd>tabprevious<cr>', 'Previous tab'},
+		t = {'<cmd>tabnew<cr>', 'New Tab'},
 	},
 
 	T = {
@@ -172,4 +177,11 @@ wk.register({
 	},
 
 	[' '] = {':', 'Enter command', silent=false},
-}, { prefix = "<leader>" })
+}
+
+for i = 1, 8 do
+	local number = tostring(i)
+	key_tree[number] = {'<cmd>BufferGoto '..number..'<cr>', 'Buffer '..number}
+end
+
+wk.register(key_tree, { prefix = '<leader>' })

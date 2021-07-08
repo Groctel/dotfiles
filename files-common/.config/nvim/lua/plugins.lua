@@ -1,8 +1,8 @@
-require('bufferline').setup
-{
-	show_tab_indicators    = true,
-	always_show_bufferline = true,
-}
+-- require('bufferline').setup
+-- {
+-- 	show_tab_indicators    = true,
+-- 	always_show_bufferline = true,
+-- }
 
 require('colorizer').setup()
 

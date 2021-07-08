@@ -63,8 +63,10 @@ highlight! CursorLineNr guibg=normal_bg
 " Mappings
 nnoremap Q <nop>
 nnoremap Y y$
-nnoremap <C-n> <cmd>bnext<cr>
-nnoremap <C-p> <cmd>bprev<cr>
+" nnoremap <C-n> <cmd>bnext<cr>
+" nnoremap <C-p> <cmd>bprev<cr>
+nnoremap <C-n> <cmd>BufferNext<cr>
+nnoremap <C-p> <cmd>BufferPrevious<cr>
 tnoremap <Esc><Esc> <C-\><C-n>
 
 " Neovide options
