@@ -2,6 +2,7 @@ let mapleader = " " " Set leader key to space to call which-key
 
 set autoindent " Start new lines correctly indented
 set colorcolumn=81 " Draw column at line character limit
+set completeopt=menuone,noselect " Completion engine options
 set fixeol " Restore EOL at EOF if missing when writing
 set foldmethod=marker " Only allow foldings with triple brackets
 set guicursor=a:block " Force cursor to be a block at all times

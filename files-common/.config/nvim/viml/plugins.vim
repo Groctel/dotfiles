@@ -10,8 +10,6 @@ let loaded_netrwPlugin = 1 " I can't close netrw :(
 call plug#begin('~/.config/nvim/plugged')
 	" Plug 'justinmk/vim-sneak'
 	" Plug 'liuchengxu/vista.vim'
-	" Plug 'nvim-lua/completion-nvim'
-		" set completeopt=menuone,noinsert,noselect
 
 	Plug 'junegunn/vim-plug'
 	Plug 'machakann/vim-highlightedyank'

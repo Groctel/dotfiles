@@ -8,6 +8,7 @@ local luaplg = '~/.config/nvim/lua/plugins.lua'
 local neonln = '~/.config/nvim/lua/neonline.lua'
 local plugin = '~/.config/nvim/viml/plugins.vim'
 local splash = '~/.config/nvim/viml/dashboard-splash-strings.txt'
+local option = '~/.config/nvim/viml/options.vim'
 local wkconf = '~/.config/nvim/lua/which-key-config.lua'
 
 function compile_command (system)
@@ -54,6 +55,7 @@ key_tree = {
 			name = '+Dotfiles',
 			l = {'<cmd>badd '..luaplg..'| blast<cr>', 'Open lua plugins settings'},
 			n = {'<cmd>badd '..neonln..'| blast<cr>', 'Open neonline settings'},
+			o = {'<cmd>badd '..option..'| blast<cr>', 'Open options settings'},
 			p = {'<cmd>badd '..plugin..'| blast<cr>', 'Open plugins settings'},
 			s = {'<cmd>badd '..splash..'| blast<cr>', 'Open splash strings file'},
 			S = {'<cmd>source $MYVIMRC | blast<cr>', 'Source vimrc'},
