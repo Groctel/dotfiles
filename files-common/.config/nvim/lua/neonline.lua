@@ -298,7 +298,6 @@ gls.short_line_left[3] = { FileIcon = { -- {{{2
 -- }}}2
 
 gls.short_line_left[4] = { FileName = { -- {{{2
-	condition = condition.buffer_not_empty,
 	highlight = {colors.white, colors.bg, 'bold'},
 	provider  = 'FileName',
 }}
