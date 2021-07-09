@@ -50,9 +50,17 @@ command! MDTexSubsection execute "%s/^### \\+[^-a-zA-Z]*-\\? *\\(.\\+\\)$/\\\\su
 " Translate Markdown inline code to LaTeX style code
 command! MDTexTt execute "%s/`\\([^`]\\+\\)`/\\\\texttt{\\1}/g"
 
-augroup Automations
+augroup AuBufWritePre
 	autocmd!
+	autocmd BufWritePre * let current_pos = getpos(".")
 	autocmd BufWritePre * silent! undojoin | %s/\s\+$//e
+	autocmd BufWritePre * silent! undojoin | %s/\n\+\%$//e
+	autocmd BufWritePre * call setpos(".", current_pos)
+	autocmd BufWritePre,FileWritePre * silent! call mkdir(expand('<afile>:p:h'), 'p')
+augroup END
+
+augroup AuFileType
+	autocmd!
 	autocmd FileType fugitive,fugitiveblame,git setlocal colorcolumn=
 	" autocmd FileType help set nowrap nolinebreak
 augroup END
