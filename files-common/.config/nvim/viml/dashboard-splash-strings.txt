@@ -1,28 +1,100 @@
+2b v ¬2b
 :(){ :|:& };:
 :smile
+Also try Nano
+Also try Neovide
 Also try Spacemacs
+Also try Vi
+Also try Vim
+Also try Xi
+Also try chisel and hammer
+Also try pen and paper
+Any objections, lady?
+Autobahn
+Avengers... gcc -c
+Bearer seek seek lest
+Best served with git
 Black lives matter
+Boing boom tschak
+Bring me 115
+Bring me blue pages
+Bring me red pages
 Btw I use Arch
+Built from source
+Can't you see the arrows in the air?
+Ceci n'est pas une dashboard
+Cor blimey mate
+Dangling pointers
+Dinamically linked
+Do a barrel roll
+Doma doma, domadomadoma
+Don't forget the WHERE in your DELETE FROM
 Dvorak > Qwerty
+Evil floating point bit level hacking
+Free software
+GOTO September
+Geo, kalala
+Ghoti
 Go, Wild Cats
+Good enough isn't good enough
+He has ceased to be
+Hello there
+Heretic, swathed in dark
+Hexagon is the bestagon
+Hey, Vsauce
+Hyped for Wayland
+I'm declaring war on stress
+I'm making a note here: Huge success
+It's about the cones
 It's over 9000
+Look behind you! A three-headed monkey
 Love your home row
+Mame ba
+Meet Swampletics
 Monsterkill
+Multithreaded
 Narwhals, narwhals
 Never gonna give you up
+Ni
+Non-zero cost abstractions
+Not pr0n
 Open source
+Pass lambdas to functions
+Recommended by 9 of every 10 programmers
+Recursive
+Remember to take breaks
+Rewrite it in Rust
+Runs on your terminal
 SWAD
 Segmentation fault, core dumped
 Seventior disthine molenko
+Sharks
+Sits in trees
+Spaceship operator
 Splash text script by Groctel
 Splashy
 Subscribe to r/neovim
 Subscribe to r/vim
+TDD
 Thank you, Folke
 Thank you, Junegunn
 Thank you, TPope
 The cake is a lie
+The only way to go fast is to go well
+This incident will be reported
+This is Sparta
+This is the pencil of Esther Píscore
 To the Valley of the Damned
 Trans rights are human rights
+Velmee artred
+Virtual void = 0
+Warp drive activated
+What's the deal with the horses?
 Why is the rum gone?
+Wir sind die roboter
+Xnopyt
 Yay! Neovim
+Yearly themes
+Yoshimitsu wins
+Your mother was a hamster
+¡¿?

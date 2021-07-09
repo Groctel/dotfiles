@@ -17,17 +17,7 @@ runtime viml/options.vim
 runtime viml/plugins.vim
 
 function! CustomFold()
-	let folded_line_count = v:foldend - v:foldstart + 1
-	let prefix = '   '. folded_line_count
-	let separator = ''
-	let spaces = 0 + strlen(folded_line_count)
-
-	while spaces < 6
-		let separator .= ' '
-		let spaces += 1
-	endwhile
-
-	return prefix . separator . getline(v:foldstart)
+	return printf('    %-6d%s', v:foldend - v:foldstart + 1, getline(v:foldstart))
 endfunction
 
 " Custom commands
