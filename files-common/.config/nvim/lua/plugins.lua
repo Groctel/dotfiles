@@ -71,4 +71,6 @@ require('orgmode').setup({
 	} },
 })
 
+require("todo-comments").setup {}
+
 require('which-key-config')

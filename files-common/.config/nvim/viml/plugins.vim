@@ -72,7 +72,8 @@ call plug#begin('~/.config/nvim/plugged')
 
 		augroup Dashboard
 			autocmd!
-			autocmd FileType dashboard setlocal laststatus=0 noruler
+			autocmd FileType dashboard set showtabline=0 laststatus=0 noruler |
+			\ autocmd BufLeave <buffer> set showtabline=2 laststatus=2 ruler
 		augroup END
 
 	Plug 'jbyuki/instant.nvim'
@@ -143,6 +144,7 @@ call plug#begin('~/.config/nvim/plugged')
 
 	" Lua plugins
 	Plug 'TimUntersberger/neogit'
+	Plug 'folke/todo-comments.nvim'
 	Plug 'folke/trouble.nvim'
 	Plug 'folke/which-key.nvim'
 	Plug 'glepnir/galaxyline.nvim'
