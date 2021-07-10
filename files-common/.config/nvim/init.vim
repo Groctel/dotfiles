@@ -63,6 +63,15 @@ augroup ForceFiletypes
 	autocmd BufNewFile,BufRead *.tpp  set filetype=cpp
 augroup END
 
+" Mappings
+nnoremap n nzz
+nnoremap N Nzz
+nnoremap Q <nop>
+nnoremap Y y$
+nnoremap <C-n> <cmd>BufferNext<cr>
+nnoremap <C-p> <cmd>BufferPrevious<cr>
+tnoremap <Esc><Esc> <C-\><C-n>
+
 " Eyecandy
 set fillchars=fold:\ | set foldtext=CustomFold()
 set listchars=tab:\|\ ,trail:· list "»>
@@ -73,14 +82,5 @@ highlight  ColorColumn  guibg=#24283b
 highlight! CursorLine   guibg=normal_bg
 highlight! CursorLineNr guibg=normal_bg
 
-" Mappings
-nnoremap Q <nop>
-nnoremap Y y$
-" nnoremap <C-n> <cmd>bnext<cr>
-" nnoremap <C-p> <cmd>bprev<cr>
-nnoremap <C-n> <cmd>BufferNext<cr>
-nnoremap <C-p> <cmd>BufferPrevious<cr>
-tnoremap <Esc><Esc> <C-\><C-n>
-
-" Neovide options
-set guifont=Fira\ Code\ Retina:h16.2
+" GUI options
+set guifont=Fira\ Code\ Retina:h10

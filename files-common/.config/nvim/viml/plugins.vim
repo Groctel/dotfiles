@@ -8,7 +8,6 @@ endif
 let loaded_netrwPlugin = 1 " I can't close netrw :(
 
 call plug#begin('~/.config/nvim/plugged')
-	" Plug 'justinmk/vim-sneak'
 	" Plug 'liuchengxu/vista.vim'
 
 	Plug 'junegunn/vim-plug'

@@ -71,6 +71,10 @@ require('orgmode').setup({
 	} },
 })
 
-require("todo-comments").setup {}
+require('telescope').setup{
+	-- find_files({hidden=true})
+}
+
+require('todo-comments').setup {}
 
 require('which-key-config')

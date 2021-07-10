@@ -19,26 +19,18 @@ function compile_command (system)
 end
 
 key_tree = {
-	a = {
-		name = '+ALE',
-		d = {'<cmd>ALEDetail<cr>', 'Marker detail'},
-		i = {'<cmd>ALEInfo<cr>', 'Linter info'},
-	},
-
 	b = {
 		name = '+Buffer',
 		a = {':badd ', 'Add buffer', silent=false},
 		d = {'<cmd>bdel<cr>', 'Delete buffer'},
-		-- c = {'<cmd>bwipe<cr>', 'Close buffer'},
 		c = {'<cmd>BufferClose<cr>', 'Close buffer'},
-		-- n = {'<cmd>bnext<cr>', 'Next buffer'},
-		-- p = {'<cmd>bprev<cr>', 'Previous buffer'},
 		n = {'<cmd>BufferNext<cr>', 'Next buffer'},
 		p = {'<cmd>BufferPrevious<cr>', 'Previous buffer'},
 		w = {'<cmd>w<cr>', 'Write current buffer'},
 		W = {'<cmd>wa<cr>', 'Write all buffers'},
 		['>'] = {'<cmd>BufferMoveNext<cr>', 'Move buffer to the right'},
 		['<'] = {'<cmd>BufferMovePrevious<cr>', 'Move buffer to the left'},
+		[' '] = {'<cmd>Telescope buffers<cr>', 'List open buffers'},
 	},
 
 	c = {
@@ -71,7 +63,7 @@ key_tree = {
 		B = {'<cmd>Telescope git_branches<cr>', 'git branch'},
 		c = {
 			name = 'Commits',
-			b = {'<cmd>Telescope git_commits<cr>', 'Buffer local commits'},
+			b = {'<cmd>Telescope git_bcommits<cr>', 'Buffer local commits'},
 			c = {'<cmd>Git commit<cr>', 'git commit'},
 			C = {'<cmd>Telescope git_commits<cr>', 'Commits history'},
 		},
@@ -93,8 +85,18 @@ key_tree = {
 		v = {':vert help ', 'Vertical help', silent=false},
 	},
 
+	j = {
+		name = '+Jump to...',
+		d = {'<cmd>Telescope lsp_definitions<cr>', 'Definition'},
+	},
+
 	l = {
 		name = '+LSP',
+		a = {
+			name = '+ALE',
+			d = {'<cmd>ALEDetail<cr>', 'Marker detail'},
+			i = {'<cmd>ALEInfo<cr>', 'Linter info'},
+		},
 		i = {'<cmd>LspInfo<cr>', 'Info'},
 		r = {'<cmd>LspRestart<cr>', 'Restart'},
 		s = {'<cmd>LspStart<cr>', 'Start'},
@@ -136,9 +138,12 @@ key_tree = {
 	s = {
 		name = '+Search',
 		b = {'?', 'Search backward', silent=false},
+		g = {'<cmd>Telescope grep_string<cr>', 'Grep string under cursor'},
+		G = {'<cmd>Telescope live_grep<cr>', 'Grep arbitrary string'},
 		h = {'<cmd>nohl<cr>', 'Disable highlight'},
 		r = {':%s///g<Left><Left><Left>', 'Search and replace', silent=false},
 		s = {'/', 'Search forward', silent=false},
+		t = {'<cmd>TodoTelescope<cr>', 'TODO appearances'},
 	},
 
 	t = {
@@ -179,11 +184,13 @@ key_tree = {
 	},
 
 	[' '] = {':', 'Enter command', silent=false},
+	['<CR>'] = {':!', 'Enter system command', silent=false},
+	['-'] = {'<cmd>Telescope command_history<cr>', 'Command history'},
 }
 
 for i = 1, 8 do
 	local number = tostring(i)
-	key_tree[number] = {'<cmd>BufferGoto '..number..'<cr>', 'Buffer '..number}
+	key_tree['j'][number] = {'<cmd>BufferGoto '..number..'<cr>', 'Buffer '..number}
 end
 
-wk.register(key_tree, { prefix = '<leader>' })
+wk.register(key_tree, {prefix = '<leader>'})
