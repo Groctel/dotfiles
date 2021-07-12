@@ -63,6 +63,11 @@ augroup ForceFiletypes
 	autocmd BufNewFile,BufRead *.tpp  set filetype=cpp
 augroup END
 
+augroup OtherAutomations
+	autocmd TextYankPost * lua vim.highlight.on_yank
+		\ {higroup="IncSearch", timeout=400, on_visual=true}
+augroup END
+
 " Mappings
 nnoremap n nzz
 nnoremap N Nzz

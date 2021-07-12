@@ -11,7 +11,6 @@ call plug#begin('~/.config/nvim/plugged')
 	" Plug 'liuchengxu/vista.vim'
 
 	Plug 'junegunn/vim-plug'
-	Plug 'machakann/vim-highlightedyank'
 	Plug 'majutsushi/tagbar'
 	Plug 'neovim/nvim-lspconfig'
 	Plug 'norcalli/nvim-colorizer.lua'
@@ -148,7 +147,6 @@ call plug#begin('~/.config/nvim/plugged')
 	Plug 'folke/which-key.nvim'
 	Plug 'glepnir/galaxyline.nvim'
 	Plug 'hrsh7th/nvim-compe'
-	Plug 'kristijanhusak/orgmode.nvim'
 	Plug 'kyazdani42/nvim-tree.lua'
 	Plug 'kyazdani42/nvim-web-devicons'
 	Plug 'nvim-lua/plenary.nvim'
@@ -158,6 +156,7 @@ call plug#begin('~/.config/nvim/plugged')
 	Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 	Plug 'onsails/lspkind-nvim'
 	Plug 'tversteeg/registers.nvim'
+	Plug 'vhyrro/neorg'
 call plug#end()
 
 lua require('plugins')
